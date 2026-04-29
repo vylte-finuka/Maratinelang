@@ -27,8 +27,6 @@ public:
       : IsPreOptimization(IsPreOptimization) {}
 
   PreservedAnalyses run(Function &F, FunctionAnalysisManager &FAM);
-
-  static bool isRequired() { return true; }
 };
 
 } // end namespace llvm
