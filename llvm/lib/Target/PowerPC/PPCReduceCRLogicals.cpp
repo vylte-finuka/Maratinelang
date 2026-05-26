@@ -18,6 +18,7 @@
 #include "PPCInstrInfo.h"
 #include "PPCTargetMachine.h"
 #include "llvm/ADT/Statistic.h"
+#include "llvm/CodeGen/LivePhysRegs.h" 
 #include "llvm/CodeGen/MachineBranchProbabilityInfo.h"
 #include "llvm/CodeGen/MachineDominators.h"
 #include "llvm/CodeGen/MachineFunctionPass.h"
@@ -248,6 +249,15 @@ static bool splitMBB(BlockSplitInfo &BSI) {
     updatePHIs(Succ, ThisMBB, NewMBB, MRI);
   }
   addIncomingValuesToPHIs(NewBRTarget, ThisMBB, NewMBB, MRI);
+
+  // Propagate physical register live-ins to NewMBB.
+  // NewMBB may be a pass-through for physical registers (e.g. $carry on
+  // PowerPC 32-bit) that are live-in to its successors but not defined or
+  // used within NewMBB itself. transferSuccessors() wired up the edges but
+  // does not propagate live-in sets. Since all successors' live-in lists are
+  // already up-to-date, compute NewMBB's requirements from them now.
+  LivePhysRegs LiveRegs(*MF->getSubtarget().getRegisterInfo());
+  computeAndAddLiveIns(LiveRegs, *NewMBB);
 
   // Set the call frame size on ThisMBB to the new basic blocks.
   // See https://reviews.llvm.org/D156113.
