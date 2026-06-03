@@ -62,6 +62,9 @@ LLVM_ABI StringRef getName(ID id);
 /// overloading, such as "llvm.ssa.copy".
 LLVM_ABI StringRef getBaseName(ID id);
 
+/// Return the target feature expression required by an intrinsic.
+LLVM_ABI StringRef getRequiredTargetFeatures(ID id);
+
 /// Return the LLVM name for an intrinsic, such as "llvm.ppc.altivec.lvx" or
 /// "llvm.ssa.copy.p0s_s.1". Note, this version of getName supports overloads.
 /// This is less efficient than the StringRef version of this function.  If no

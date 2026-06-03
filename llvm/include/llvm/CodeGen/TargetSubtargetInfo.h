@@ -87,6 +87,9 @@ public:
 
   virtual bool isXRaySupported() const { return false; }
 
+  /// Return true if the target intrinsic is supported by this subtarget.
+  virtual bool isIntrinsicSupported(unsigned IntrinsicID) const;
+
   // Interfaces to the major aspects of target machine information:
   //
   // -- Instruction opcode and operand information

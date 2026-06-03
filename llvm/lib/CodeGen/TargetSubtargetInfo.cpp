@@ -11,6 +11,7 @@
 //===----------------------------------------------------------------------===//
 
 #include "llvm/CodeGen/TargetSubtargetInfo.h"
+#include "llvm/IR/Intrinsics.h"
 
 using namespace llvm;
 
@@ -24,6 +25,11 @@ TargetSubtargetInfo::TargetSubtargetInfo(
                       FP) {}
 
 TargetSubtargetInfo::~TargetSubtargetInfo() = default;
+
+bool TargetSubtargetInfo::isIntrinsicSupported(unsigned IntrinsicID) const {
+  return checkFeatureExpression(Intrinsic::getRequiredTargetFeatures(
+      static_cast<Intrinsic::ID>(IntrinsicID)));
+}
 
 bool TargetSubtargetInfo::enableAtomicExpand() const {
   return true;

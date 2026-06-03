@@ -5509,11 +5509,62 @@ SDValue SelectionDAGBuilder::handleTargetIntrinsicRet(const CallBase &I,
   return Result;
 }
 
+static std::string getUnsupportedTargetIntrinsicMsg(Intrinsic::ID IntrinsicID) {
+  StringRef RequiredFeatures =
+      Intrinsic::getRequiredTargetFeatures(IntrinsicID);
+  assert(!RequiredFeatures.empty() &&
+         "intrinsic without required features should be supported");
+  return (Twine(Intrinsic::getBaseName(IntrinsicID)) +
+          " requires target feature '" + RequiredFeatures + "'")
+      .str();
+}
+
+static void diagnoseUnsupportedTargetIntrinsic(SelectionDAG &DAG,
+                                               const CallBase &I,
+                                               Intrinsic::ID IntrinsicID,
+                                               const SDLoc &DL) {
+  DAG.getContext()->diagnose(DiagnosticInfoUnsupported(
+      *I.getFunction(), getUnsupportedTargetIntrinsicMsg(IntrinsicID),
+      DL.getDebugLoc()));
+}
+
 /// visitTargetIntrinsic - Lower a call of a target intrinsic to an INTRINSIC
 /// node.
 void SelectionDAGBuilder::visitTargetIntrinsic(const CallInst &I,
                                                unsigned Intrinsic) {
   auto [HasChain, OnlyLoad] = getTargetIntrinsicCallProperties(I);
+  Intrinsic::ID IntrinsicID = static_cast<Intrinsic::ID>(Intrinsic);
+
+  if (!DAG.getMachineFunction().getSubtarget().isIntrinsicSupported(
+          Intrinsic)) {
+    SDLoc DL = getCurSDLoc();
+    diagnoseUnsupportedTargetIntrinsic(DAG, I, IntrinsicID, DL);
+
+    SDVTList VTs = getTargetIntrinsicVTList(I, HasChain);
+    SDValue Chain;
+    if (HasChain)
+      Chain = OnlyLoad ? DAG.getRoot() : getRoot();
+
+    SmallVector<SDValue, 4> Results;
+    for (unsigned Idx = 0, E = VTs.NumVTs; Idx != E; ++Idx) {
+      EVT VT = VTs.VTs[Idx];
+      if (VT == MVT::Other)
+        Results.push_back(Chain);
+      else
+        Results.push_back(DAG.getPOISON(VT));
+    }
+
+    SDValue Result;
+    if (Results.size() == 1)
+      Result = Results[0];
+    else if (!Results.empty())
+      Result = DAG.getMergeValues(Results, DL);
+
+    if (Result.getNode())
+      Result = handleTargetIntrinsicRet(I, HasChain, OnlyLoad, Result);
+    setValue(&I, Result);
+    return;
+  }
 
   // Infos is set by getTgtMemIntrinsic.
   SmallVector<TargetLowering::IntrinsicInfo> Infos;

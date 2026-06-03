@@ -128,6 +128,16 @@ static void reportTranslationError(MachineFunction &MF,
     ORE.emit(R);
 }
 
+static std::string getUnsupportedTargetIntrinsicMsg(Intrinsic::ID IntrinsicID) {
+  StringRef RequiredFeatures =
+      Intrinsic::getRequiredTargetFeatures(IntrinsicID);
+  assert(!RequiredFeatures.empty() &&
+         "intrinsic without required features should be supported");
+  return (Twine(Intrinsic::getBaseName(IntrinsicID)) +
+          " requires target feature '" + RequiredFeatures + "'")
+      .str();
+}
+
 IRTranslator::IRTranslator(CodeGenOptLevel optlevel)
     : MachineFunctionPass(ID), OptLevel(optlevel) {}
 
@@ -2857,6 +2867,13 @@ bool IRTranslator::translateCall(const User &U, MachineIRBuilder &MIRBuilder) {
 
   assert(ID != Intrinsic::not_intrinsic && "unknown intrinsic");
 
+  if (!MF->getSubtarget().isIntrinsicSupported(ID)) {
+    const Function &Fn = MF->getFunction();
+    Fn.getContext().diagnose(DiagnosticInfoUnsupported(
+        Fn, getUnsupportedTargetIntrinsicMsg(ID), CI.getDebugLoc()));
+    return false;
+  }
+
   if (translateKnownIntrinsic(CI, ID, MIRBuilder))
     return true;
 
@@ -2870,6 +2887,13 @@ bool IRTranslator::translateCall(const User &U, MachineIRBuilder &MIRBuilder) {
 bool IRTranslator::translateIntrinsic(
     const CallBase &CB, Intrinsic::ID ID, MachineIRBuilder &MIRBuilder,
     ArrayRef<TargetLowering::IntrinsicInfo> TgtMemIntrinsicInfos) {
+  if (!MF->getSubtarget().isIntrinsicSupported(ID)) {
+    const Function &F = MF->getFunction();
+    F.getContext().diagnose(DiagnosticInfoUnsupported(
+        F, getUnsupportedTargetIntrinsicMsg(ID), CB.getDebugLoc()));
+    return false;
+  }
+
   ArrayRef<Register> ResultRegs;
   if (!CB.getType()->isVoidTy())
     ResultRegs = getOrCreateVRegs(CB);
