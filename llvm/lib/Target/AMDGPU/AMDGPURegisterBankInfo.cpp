@@ -693,7 +693,7 @@ static LLT getHalfSizedType(LLT Ty) {
   }
 
   assert(Ty.getScalarSizeInBits() % 2 == 0);
-  return LLT::scalar(Ty.getScalarSizeInBits() / 2);
+  return Ty.changeElementSize(Ty.getScalarSizeInBits() / 2);
 }
 
 // Build one or more V_READFIRSTLANE_B32 instructions to move the given vector
@@ -1185,7 +1185,7 @@ bool AMDGPURegisterBankInfo::applyMappingDynStackAlloc(
   }
 
   LLT PtrTy = MRI.getType(Dst);
-  LLT IntPtrTy = LLT::scalar(PtrTy.getSizeInBits());
+  LLT IntPtrTy = LLT::integer(PtrTy.getSizeInBits());
 
   const SIMachineFunctionInfo *Info = MF.getInfo<SIMachineFunctionInfo>();
   Register SPReg = Info->getStackPtrOffsetReg();
