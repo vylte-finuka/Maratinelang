@@ -285,8 +285,10 @@ class CIRAttrToValue {
 public:
   CIRAttrToValue(mlir::Operation *parentOp,
                  mlir::ConversionPatternRewriter &rewriter,
-                 const mlir::TypeConverter *converter)
-      : parentOp(parentOp), rewriter(rewriter), converter(converter) {}
+                 const mlir::TypeConverter *converter,
+                 LLVMBlockAddressInfo &blockInfoAddr)
+      : parentOp(parentOp), rewriter(rewriter), converter(converter),
+        blockInfoAddr(blockInfoAddr) {}
 
 #define GET_CIR_ATTR_TO_VALUE_VISITOR_DECLS
 #include "clang/CIR/Dialect/IR/CIRLowering.inc"
@@ -296,14 +298,19 @@ private:
   mlir::Operation *parentOp;
   mlir::ConversionPatternRewriter &rewriter;
   const mlir::TypeConverter *converter;
+  // Pass-owned block-address bookkeeping, shared with the LabelOp and
+  // BlockAddressOp lowerings so a block address embedded in a constant
+  // initializer resolves through the same mechanism as the op form.
+  LLVMBlockAddressInfo &blockInfoAddr;
 };
 
 /// Switches on the type of attribute and calls the appropriate conversion.
 mlir::Value lowerCirAttrAsValue(mlir::Operation *parentOp,
                                 const mlir::Attribute attr,
                                 mlir::ConversionPatternRewriter &rewriter,
-                                const mlir::TypeConverter *converter) {
-  CIRAttrToValue valueConverter(parentOp, rewriter, converter);
+                                const mlir::TypeConverter *converter,
+                                LLVMBlockAddressInfo &blockInfoAddr) {
+  CIRAttrToValue valueConverter(parentOp, rewriter, converter, blockInfoAddr);
   mlir::Value value = valueConverter.visit(attr);
   if (!value)
     llvm_unreachable("unhandled attribute type");
@@ -654,6 +661,33 @@ mlir::Value CIRAttrToValue::visitCirAttr(cir::GlobalViewAttr globalAttr) {
     return addrOp;
 
   llvm_unreachable("Expecting pointer or integer type for GlobalViewAttr");
+}
+
+// BlockAddressAttr visitor.  Mirrors CIRToLLVMBlockAddressOpLowering so a
+// block address embedded in a constant initializer (e.g. a static
+// computed-goto dispatch table) resolves through the same mechanism as the
+// cir.block_address op.
+mlir::Value CIRAttrToValue::visitCirAttr(cir::BlockAddressAttr attr) {
+  mlir::MLIRContext *ctx = rewriter.getContext();
+  mlir::Location loc = parentOp->getLoc();
+
+  cir::BlockAddrInfoAttr blockInfo =
+      cir::BlockAddrInfoAttr::get(ctx, attr.getFunc(), attr.getLabel());
+
+  mlir::LLVM::BlockTagOp matchLabel = blockInfoAddr.lookupBlockTag(blockInfo);
+  mlir::LLVM::BlockTagAttr tagAttr;
+  // If the BlockTagOp has not been emitted yet, use a placeholder tag.  It is
+  // patched with the correct tag index later in resolveBlockAddressOp.
+  if (matchLabel)
+    tagAttr = matchLabel.getTag();
+
+  auto blkAddr =
+      mlir::LLVM::BlockAddressAttr::get(ctx, attr.getFunc(), tagAttr);
+  auto newOp = mlir::LLVM::BlockAddressOp::create(
+      rewriter, loc, mlir::LLVM::LLVMPointerType::get(ctx), blkAddr);
+  if (!matchLabel)
+    blockInfoAddr.addUnresolvedBlockAddress(newOp, blockInfo);
+  return newOp;
 }
 
 // TypeInfoAttr visitor.
@@ -2006,7 +2040,8 @@ mlir::LogicalResult CIRToLLVMConstantOpLowering::matchAndRewrite(
     }
     // Lower GlobalViewAttr to llvm.mlir.addressof
     if (auto gv = mlir::dyn_cast<cir::GlobalViewAttr>(op.getValue())) {
-      auto newOp = lowerCirAttrAsValue(op, gv, rewriter, getTypeConverter());
+      auto newOp = lowerCirAttrAsValue(op, gv, rewriter, getTypeConverter(),
+                                       blockInfoAddr);
       rewriter.replaceOp(op, newOp);
       return mlir::success();
     }
@@ -2018,32 +2053,34 @@ mlir::LogicalResult CIRToLLVMConstantOpLowering::matchAndRewrite(
 
     std::optional<mlir::Attribute> denseAttr;
     if (constArr && hasTrailingZeros(constArr)) {
-      const mlir::Value newOp =
-          lowerCirAttrAsValue(op, constArr, rewriter, getTypeConverter());
+      const mlir::Value newOp = lowerCirAttrAsValue(
+          op, constArr, rewriter, getTypeConverter(), blockInfoAddr);
       rewriter.replaceOp(op, newOp);
       return mlir::success();
     } else if (constArr &&
                (denseAttr = lowerConstArrayAttr(constArr, typeConverter))) {
       attr = denseAttr.value();
     } else {
-      const mlir::Value initVal =
-          lowerCirAttrAsValue(op, op.getValue(), rewriter, typeConverter);
+      const mlir::Value initVal = lowerCirAttrAsValue(
+          op, op.getValue(), rewriter, typeConverter, blockInfoAddr);
       rewriter.replaceOp(op, initVal);
       return mlir::success();
     }
   } else if (const auto recordAttr =
                  mlir::dyn_cast<cir::ConstRecordAttr>(op.getValue())) {
-    auto initVal = lowerCirAttrAsValue(op, recordAttr, rewriter, typeConverter);
+    auto initVal = lowerCirAttrAsValue(op, recordAttr, rewriter, typeConverter,
+                                       blockInfoAddr);
     rewriter.replaceOp(op, initVal);
     return mlir::success();
   } else if (const auto vecTy = mlir::dyn_cast<cir::VectorType>(op.getType())) {
-    rewriter.replaceOp(op, lowerCirAttrAsValue(op, op.getValue(), rewriter,
-                                               getTypeConverter()));
+    rewriter.replaceOp(op,
+                       lowerCirAttrAsValue(op, op.getValue(), rewriter,
+                                           getTypeConverter(), blockInfoAddr));
     return mlir::success();
   } else if (mlir::isa<cir::RecordType>(op.getType())) {
     if (mlir::isa<cir::ZeroAttr, cir::UndefAttr>(attr)) {
       mlir::Value initVal =
-          lowerCirAttrAsValue(op, attr, rewriter, typeConverter);
+          lowerCirAttrAsValue(op, attr, rewriter, typeConverter, blockInfoAddr);
       rewriter.replaceOp(op, initVal);
       return mlir::success();
     }
@@ -2430,7 +2467,7 @@ CIRToLLVMGlobalOpLowering::matchAndRewriteRegionInitializedGlobal(
   // to the appropriate value.
   const mlir::Location loc = op.getLoc();
   setupRegionInitializedLLVMGlobalOp(op, rewriter);
-  CIRAttrToValue valueConverter(op, rewriter, typeConverter);
+  CIRAttrToValue valueConverter(op, rewriter, typeConverter, blockInfoAddr);
   mlir::Value value = valueConverter.visit(init);
   mlir::LLVM::ReturnOp::create(rewriter, loc, value);
   return mlir::success();
@@ -3715,7 +3752,8 @@ void ConvertCIRToLLVMPass::runOnOperation() {
   /// repeated O(M) module-wide symbol scans for every call site.
   mlir::SymbolTableCollection symbolTables;
   mlir::RewritePatternSet patterns(&getContext());
-  patterns.add<CIRToLLVMBlockAddressOpLowering, CIRToLLVMLabelOpLowering>(
+  patterns.add<CIRToLLVMBlockAddressOpLowering, CIRToLLVMLabelOpLowering,
+               CIRToLLVMConstantOpLowering, CIRToLLVMGlobalOpLowering>(
       converter, patterns.getContext(), dl, blockInfoAddr);
   patterns.add<CIRToLLVMCallOpLowering, CIRToLLVMTryCallOpLowering>(
       converter, patterns.getContext(), dl, symbolTables);

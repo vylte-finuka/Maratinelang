@@ -1477,6 +1477,50 @@ def CIR_BlockAddrInfoAttr : CIR_Attr<"BlockAddrInfo", "block_addr_info"> {
 }
 
 //===----------------------------------------------------------------------===//
+// CIR_BlockAddressAttr
+//===----------------------------------------------------------------------===//
+
+def CIR_BlockAddressAttr
+    : CIR_ValueLikeAttr<"BlockAddress", "block_address"> {
+  let summary = "Constant address of a label within a function";
+  let description = [{
+    Represents the address of a label inside a function as a constant
+    pointer, mirroring LLVM IR's `blockaddress(@func, %bb)`.  Unlike the
+    `cir.block_address` operation, this attribute is a constant, so it can
+    appear in global initializers and `#cir.const_array` elements.  This is
+    required for the GNU computed-goto dispatch-table idiom:
+
+    ```c
+    static const void *tbl[] = {&&L1, &&L2};
+    goto *tbl[i];
+    ```
+
+    Example:
+
+    ```mlir
+    #cir.block_address<@func, "label"> : !cir.ptr<!cir.void>
+    ```
+  }];
+
+  let parameters = (ins AttributeSelfTypeParameter<"">:$type,
+                        "mlir::FlatSymbolRefAttr":$func,
+                        "mlir::StringAttr":$label);
+
+  let builders = [
+    AttrBuilderWithInferredContext<(ins "mlir::Type":$type,
+                                        "mlir::FlatSymbolRefAttr":$func,
+                                        "mlir::StringAttr":$label), [{
+      return $_get(type.getContext(), type, func, label);
+    }]>
+  ];
+
+  let assemblyFormat = "`<` $func `,` $label `>`";
+
+  // A block address is always a plain void pointer, never a C++ ABI type.
+  let canHaveIllegalCXXABIType = 0;
+}
+
+//===----------------------------------------------------------------------===//
 // Side Effect
 //===----------------------------------------------------------------------===//
 

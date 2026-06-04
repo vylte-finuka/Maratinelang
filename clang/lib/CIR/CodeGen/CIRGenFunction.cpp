@@ -625,10 +625,20 @@ void CIRGenFunction::finishIndirectBranch() {
     succesors.push_back(labelOp->getBlock());
     rangeOperands.push_back(labelOp->getBlock()->getArguments());
   }
+  // Labels whose address was taken only from a constant initializer have no
+  // function-local BlockAddressOp; add them as successors here.  All labels
+  // are emitted by now, so the lookup resolves.
+  for (cir::BlockAddrInfoAttr info : constBlockAddressLabels) {
+    cir::LabelOp labelOp = cgm.lookupBlockAddressInfo(info);
+    assert(labelOp && "expected cir.label to be emitted for const block addr");
+    succesors.push_back(labelOp->getBlock());
+    rangeOperands.push_back(labelOp->getBlock()->getArguments());
+  }
   cir::IndirectBrOp::create(builder, builder.getUnknownLoc(),
                             indirectGotoBlock->getArgument(0), false,
                             rangeOperands, succesors);
   cgm.blockAddressToLabel.clear();
+  constBlockAddressLabels.clear();
 }
 
 void CIRGenFunction::finishFunction(SourceLocation endLoc) {
@@ -1474,6 +1484,11 @@ void CIRGenFunction::instantiateIndirectGotoBlock() {
   indirectGotoBlock =
       builder.createBlock(builder.getBlock()->getParent(), {}, {voidPtrTy},
                           {builder.getUnknownLoc()});
+}
+
+void CIRGenFunction::takeAddressOfConstantLabel(cir::BlockAddrInfoAttr info) {
+  constBlockAddressLabels.push_back(info);
+  instantiateIndirectGotoBlock();
 }
 
 mlir::Value CIRGenFunction::emitAlignmentAssumption(

@@ -6,8 +6,10 @@
 //
 //===----------------------------------------------------------------------===//
 #include "PassDetail.h"
+#include "mlir/IR/AttrTypeSubElements.h"
 #include "clang/CIR/Dialect/IR/CIRDialect.h"
 #include "clang/CIR/Dialect/Passes.h"
+#include "llvm/ADT/DenseMap.h"
 #include "llvm/ADT/SmallSet.h"
 #include "llvm/Support/TimeProfiler.h"
 #include <memory>
@@ -27,7 +29,8 @@ struct GotoSolverPass : public impl::GotoSolverBase<GotoSolverPass> {
   void runOnOperation() override;
 };
 
-static void process(cir::FuncOp func) {
+static void process(cir::FuncOp func,
+                    const llvm::SmallSet<StringRef, 4> &constBlockAddrLabel) {
   mlir::OpBuilder rewriter(func.getContext());
   llvm::StringMap<Block *> labels;
   llvm::SmallVector<cir::GotoOp, 4> gotos;
@@ -42,6 +45,12 @@ static void process(cir::FuncOp func) {
       blockAddrLabel.insert(blockAddr.getBlockAddrInfo().getLabel());
     }
   });
+
+  // Labels whose address is taken only from a constant #cir.block_address
+  // (e.g. a static computed-goto dispatch table) have no function-local
+  // BlockAddressOp.  Treat them as address-taken so their LabelOp survives.
+  for (StringRef label : constBlockAddrLabel)
+    blockAddrLabel.insert(label);
 
   for (auto &lab : labels) {
     StringRef labelName = lab.getKey();
@@ -65,7 +74,36 @@ static void process(cir::FuncOp func) {
 
 void GotoSolverPass::runOnOperation() {
   llvm::TimeTraceScope scope("Goto Solver");
-  getOperation()->walk(&process);
+
+  // Collect labels whose address is taken via a constant #cir.block_address
+  // attribute anywhere in the module (e.g. in a static computed-goto dispatch
+  // table's initializer).  These references are not function-local
+  // BlockAddressOps, so gather them up front, keyed by function symbol, so the
+  // per-function pass does not erase the still-needed LabelOp.
+  llvm::DenseMap<StringRef, llvm::SmallSet<StringRef, 4>> constBlockAddrLabels;
+  // Only the presence of a label makes the per-function erase logic relevant,
+  // so skip the whole-module attribute walk entirely for the common case of a
+  // translation unit with no labels.
+  bool hasLabel = false;
+  getOperation()->walk([&](cir::LabelOp) {
+    hasLabel = true;
+    return mlir::WalkResult::interrupt();
+  });
+  if (hasLabel) {
+    mlir::AttrTypeWalker walker;
+    walker.addWalk([&](cir::BlockAddressAttr ba) {
+      constBlockAddrLabels[ba.getFunc().getValue()].insert(
+          ba.getLabel().getValue());
+    });
+    getOperation()->walk([&](mlir::Operation *op) {
+      for (const mlir::NamedAttribute &na : op->getAttrs())
+        walker.walk(na.getValue());
+    });
+  }
+
+  getOperation()->walk([&](cir::FuncOp func) {
+    process(func, constBlockAddrLabels.lookup(func.getSymName()));
+  });
 }
 
 } // namespace

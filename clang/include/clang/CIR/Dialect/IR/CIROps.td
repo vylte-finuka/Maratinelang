@@ -503,6 +503,11 @@ def CIR_ConstantOp : CIR_Op<"const", [
 
   let hasCXXABILowering = true;
   let isLLVMLoweringRecursive = true;
+
+  // The constant initializer may embed a #cir.block_address attribute, whose
+  // lowering shares the pass-owned block-address bookkeeping.
+  let customLLVMLoweringConstructorDecl =
+    LoweringBuilders<(ins "LLVMBlockAddressInfo &":$blockInfoAddr)>;
 }
 
 //===----------------------------------------------------------------------===//
@@ -2984,6 +2989,12 @@ def CIR_GlobalOp : CIR_Op<"global", [
     mlir::SymbolRefAttr getComdatAttr(cir::GlobalOp &op,
                                       mlir::OpBuilder &builder) const;
   }];
+
+  // A region-initialized global may embed a #cir.block_address attribute
+  // (e.g. a static computed-goto dispatch table), whose lowering shares the
+  // pass-owned block-address bookkeeping.
+  let customLLVMLoweringConstructorDecl =
+    LoweringBuilders<(ins "LLVMBlockAddressInfo &":$blockInfoAddr)>;
 }
 
 //===----------------------------------------------------------------------===//

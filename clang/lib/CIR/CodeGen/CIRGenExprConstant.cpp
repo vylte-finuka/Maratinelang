@@ -1234,6 +1234,10 @@ struct ConstantLValue {
       : value(nullptr), hasOffsetApplied(false) {}
   /*implicit*/ ConstantLValue(cir::GlobalViewAttr address)
       : value(address), hasOffsetApplied(false) {}
+  // A label address has no object offset, so mark the offset as already
+  // applied to skip applyOffset (which only knows how to offset globals).
+  /*implicit*/ ConstantLValue(cir::BlockAddressAttr address)
+      : value(address), hasOffsetApplied(true) {}
 
   ConstantLValue() : value(nullptr), hasOffsetApplied(false) {}
 };
@@ -1514,8 +1518,26 @@ ConstantLValueEmitter::VisitPredefinedExpr(const PredefinedExpr *e) {
 
 ConstantLValue
 ConstantLValueEmitter::VisitAddrLabelExpr(const AddrLabelExpr *e) {
-  cgm.errorNYI(e->getSourceRange(), "ConstantLValueEmitter: addr label expr");
-  return {};
+  // A label address taken in a constant context, e.g. a static computed-goto
+  // dispatch table `static void *tbl[] = {&&L1, &&L2}`.  Emit a constant
+  // #cir.block_address and register the label as address-taken so the
+  // enclosing function gets an indirect-goto block with this label among its
+  // successors.  A label is always function-local, so cgf is set here.
+  assert(emitter.cgf &&
+         "label address in a constant requires an enclosing function");
+  assert(value.getLValueOffset().isZero() &&
+         "label address cannot carry an offset");
+  CIRGenFunction &cgf = *const_cast<CIRGenFunction *>(emitter.cgf);
+  mlir::MLIRContext *ctx = cgm.getBuilder().getContext();
+  auto func = cast<cir::FuncOp>(cgf.curFn);
+  mlir::Type ptrTy = cgm.getTypes().convertTypeForMem(destType);
+  assert(mlir::isa<cir::PointerType>(ptrTy) &&
+         "label address in a constant must be a pointer");
+
+  auto info = cir::BlockAddrInfoAttr::get(ctx, func.getSymName(),
+                                          e->getLabel()->getName());
+  cgf.takeAddressOfConstantLabel(info);
+  return cir::BlockAddressAttr::get(ptrTy, info.getFunc(), info.getLabel());
 }
 
 ConstantLValue ConstantLValueEmitter::VisitCallExpr(const CallExpr *e) {
