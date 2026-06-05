@@ -205,7 +205,6 @@ what to add to your calendar invite.
      - [Minutes/docs](https://docs.google.com/document/d/1GahxppHJ7o1O_fn1Mbidu1DHEg7V2aOr92LXCtNV1_o/edit?usp=sharing)
    * - Clang C and C++ Language Working Group
      - 1st and 3rd Wednesday of the month
-     - [gcal](https://calendar.google.com/calendar/u/0?cid=cW1lZGg0ZXNpMnIyZDN2aTVydGVrdWF1YzRAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ)
      - [Minutes/docs](https://docs.google.com/document/d/1x5-RbOC6-jnI_NcJ9Dp4pSmGhhNe7lUevuWUIB46TeM/edit?usp=sharing)
    * - LLVM SPIR-V Backend Working Group
      - Every week on Monday
