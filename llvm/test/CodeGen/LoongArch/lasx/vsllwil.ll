@@ -5,41 +5,7 @@
 define <16 x i16> @vsllwil_h_b(<32 x i8> %a) nounwind {
 ; CHECK-LABEL: vsllwil_h_b:
 ; CHECK:       # %bb.0: # %entry
-; CHECK-NEXT:    vpickve2gr.b $a0, $vr0, 0
-; CHECK-NEXT:    vinsgr2vr.b $vr1, $a0, 0
-; CHECK-NEXT:    vpickve2gr.b $a0, $vr0, 1
-; CHECK-NEXT:    vinsgr2vr.b $vr1, $a0, 1
-; CHECK-NEXT:    vpickve2gr.b $a0, $vr0, 2
-; CHECK-NEXT:    vinsgr2vr.b $vr1, $a0, 2
-; CHECK-NEXT:    vpickve2gr.b $a0, $vr0, 3
-; CHECK-NEXT:    vinsgr2vr.b $vr1, $a0, 3
-; CHECK-NEXT:    vpickve2gr.b $a0, $vr0, 4
-; CHECK-NEXT:    vinsgr2vr.b $vr1, $a0, 4
-; CHECK-NEXT:    vpickve2gr.b $a0, $vr0, 5
-; CHECK-NEXT:    vinsgr2vr.b $vr1, $a0, 5
-; CHECK-NEXT:    vpickve2gr.b $a0, $vr0, 6
-; CHECK-NEXT:    vinsgr2vr.b $vr1, $a0, 6
-; CHECK-NEXT:    vpickve2gr.b $a0, $vr0, 7
-; CHECK-NEXT:    vinsgr2vr.b $vr1, $a0, 7
-; CHECK-NEXT:    xvpermi.d $xr0, $xr0, 14
-; CHECK-NEXT:    vpickve2gr.b $a0, $vr0, 0
-; CHECK-NEXT:    vinsgr2vr.b $vr1, $a0, 8
-; CHECK-NEXT:    vpickve2gr.b $a0, $vr0, 1
-; CHECK-NEXT:    vinsgr2vr.b $vr1, $a0, 9
-; CHECK-NEXT:    vpickve2gr.b $a0, $vr0, 2
-; CHECK-NEXT:    vinsgr2vr.b $vr1, $a0, 10
-; CHECK-NEXT:    vpickve2gr.b $a0, $vr0, 3
-; CHECK-NEXT:    vinsgr2vr.b $vr1, $a0, 11
-; CHECK-NEXT:    vpickve2gr.b $a0, $vr0, 4
-; CHECK-NEXT:    vinsgr2vr.b $vr1, $a0, 12
-; CHECK-NEXT:    vpickve2gr.b $a0, $vr0, 5
-; CHECK-NEXT:    vinsgr2vr.b $vr1, $a0, 13
-; CHECK-NEXT:    vpickve2gr.b $a0, $vr0, 6
-; CHECK-NEXT:    vinsgr2vr.b $vr1, $a0, 14
-; CHECK-NEXT:    vpickve2gr.b $a0, $vr0, 7
-; CHECK-NEXT:    vinsgr2vr.b $vr1, $a0, 15
-; CHECK-NEXT:    vext2xv.h.b $xr0, $xr1
-; CHECK-NEXT:    xvslli.h $xr0, $xr0, 1
+; CHECK-NEXT:    xvsllwil.h.b $xr0, $xr0, 1
 ; CHECK-NEXT:    ret
 entry:
   %0 = shufflevector <32 x i8> %a, <32 x i8> poison,
@@ -53,25 +19,7 @@ entry:
 define <8 x i32> @vsllwil_w_h(<16 x i16> %a) nounwind {
 ; CHECK-LABEL: vsllwil_w_h:
 ; CHECK:       # %bb.0: # %entry
-; CHECK-NEXT:    vpickve2gr.h $a0, $vr0, 0
-; CHECK-NEXT:    vinsgr2vr.h $vr1, $a0, 0
-; CHECK-NEXT:    vpickve2gr.h $a0, $vr0, 1
-; CHECK-NEXT:    vinsgr2vr.h $vr1, $a0, 1
-; CHECK-NEXT:    vpickve2gr.h $a0, $vr0, 2
-; CHECK-NEXT:    vinsgr2vr.h $vr1, $a0, 2
-; CHECK-NEXT:    vpickve2gr.h $a0, $vr0, 3
-; CHECK-NEXT:    vinsgr2vr.h $vr1, $a0, 3
-; CHECK-NEXT:    xvpermi.d $xr0, $xr0, 14
-; CHECK-NEXT:    vpickve2gr.h $a0, $vr0, 0
-; CHECK-NEXT:    vinsgr2vr.h $vr1, $a0, 4
-; CHECK-NEXT:    vpickve2gr.h $a0, $vr0, 1
-; CHECK-NEXT:    vinsgr2vr.h $vr1, $a0, 5
-; CHECK-NEXT:    vpickve2gr.h $a0, $vr0, 2
-; CHECK-NEXT:    vinsgr2vr.h $vr1, $a0, 6
-; CHECK-NEXT:    vpickve2gr.h $a0, $vr0, 3
-; CHECK-NEXT:    vinsgr2vr.h $vr1, $a0, 7
-; CHECK-NEXT:    vext2xv.w.h $xr0, $xr1
-; CHECK-NEXT:    xvslli.w $xr0, $xr0, 15
+; CHECK-NEXT:    xvsllwil.w.h $xr0, $xr0, 15
 ; CHECK-NEXT:    ret
 entry:
   %0 = shufflevector <16 x i16> %a, <16 x i16> poison,
@@ -84,16 +32,7 @@ entry:
 define <4 x i64> @vsllwil_d_w(<8 x i32> %a) nounwind {
 ; CHECK-LABEL: vsllwil_d_w:
 ; CHECK:       # %bb.0: # %entry
-; CHECK-NEXT:    xvpickve2gr.w $a0, $xr0, 0
-; CHECK-NEXT:    vinsgr2vr.w $vr1, $a0, 0
-; CHECK-NEXT:    xvpickve2gr.w $a0, $xr0, 1
-; CHECK-NEXT:    vinsgr2vr.w $vr1, $a0, 1
-; CHECK-NEXT:    xvpickve2gr.w $a0, $xr0, 4
-; CHECK-NEXT:    vinsgr2vr.w $vr1, $a0, 2
-; CHECK-NEXT:    xvpickve2gr.w $a0, $xr0, 5
-; CHECK-NEXT:    vinsgr2vr.w $vr1, $a0, 3
-; CHECK-NEXT:    vext2xv.d.w $xr0, $xr1
-; CHECK-NEXT:    xvslli.d $xr0, $xr0, 31
+; CHECK-NEXT:    xvsllwil.d.w $xr0, $xr0, 31
 ; CHECK-NEXT:    ret
 entry:
   %0 = shufflevector <8 x i32> %a, <8 x i32> poison,
@@ -106,41 +45,7 @@ entry:
 define <16 x i16> @vsllwil_hu_bu(<32 x i8> %a) nounwind {
 ; CHECK-LABEL: vsllwil_hu_bu:
 ; CHECK:       # %bb.0: # %entry
-; CHECK-NEXT:    vpickve2gr.b $a0, $vr0, 0
-; CHECK-NEXT:    vinsgr2vr.b $vr1, $a0, 0
-; CHECK-NEXT:    vpickve2gr.b $a0, $vr0, 1
-; CHECK-NEXT:    vinsgr2vr.b $vr1, $a0, 1
-; CHECK-NEXT:    vpickve2gr.b $a0, $vr0, 2
-; CHECK-NEXT:    vinsgr2vr.b $vr1, $a0, 2
-; CHECK-NEXT:    vpickve2gr.b $a0, $vr0, 3
-; CHECK-NEXT:    vinsgr2vr.b $vr1, $a0, 3
-; CHECK-NEXT:    vpickve2gr.b $a0, $vr0, 4
-; CHECK-NEXT:    vinsgr2vr.b $vr1, $a0, 4
-; CHECK-NEXT:    vpickve2gr.b $a0, $vr0, 5
-; CHECK-NEXT:    vinsgr2vr.b $vr1, $a0, 5
-; CHECK-NEXT:    vpickve2gr.b $a0, $vr0, 6
-; CHECK-NEXT:    vinsgr2vr.b $vr1, $a0, 6
-; CHECK-NEXT:    vpickve2gr.b $a0, $vr0, 7
-; CHECK-NEXT:    vinsgr2vr.b $vr1, $a0, 7
-; CHECK-NEXT:    xvpermi.d $xr0, $xr0, 14
-; CHECK-NEXT:    vpickve2gr.b $a0, $vr0, 0
-; CHECK-NEXT:    vinsgr2vr.b $vr1, $a0, 8
-; CHECK-NEXT:    vpickve2gr.b $a0, $vr0, 1
-; CHECK-NEXT:    vinsgr2vr.b $vr1, $a0, 9
-; CHECK-NEXT:    vpickve2gr.b $a0, $vr0, 2
-; CHECK-NEXT:    vinsgr2vr.b $vr1, $a0, 10
-; CHECK-NEXT:    vpickve2gr.b $a0, $vr0, 3
-; CHECK-NEXT:    vinsgr2vr.b $vr1, $a0, 11
-; CHECK-NEXT:    vpickve2gr.b $a0, $vr0, 4
-; CHECK-NEXT:    vinsgr2vr.b $vr1, $a0, 12
-; CHECK-NEXT:    vpickve2gr.b $a0, $vr0, 5
-; CHECK-NEXT:    vinsgr2vr.b $vr1, $a0, 13
-; CHECK-NEXT:    vpickve2gr.b $a0, $vr0, 6
-; CHECK-NEXT:    vinsgr2vr.b $vr1, $a0, 14
-; CHECK-NEXT:    vpickve2gr.b $a0, $vr0, 7
-; CHECK-NEXT:    vinsgr2vr.b $vr1, $a0, 15
-; CHECK-NEXT:    vext2xv.hu.bu $xr0, $xr1
-; CHECK-NEXT:    xvslli.h $xr0, $xr0, 1
+; CHECK-NEXT:    xvsllwil.hu.bu $xr0, $xr0, 1
 ; CHECK-NEXT:    ret
 entry:
   %0 = shufflevector <32 x i8> %a, <32 x i8> poison,
@@ -154,25 +59,7 @@ entry:
 define <8 x i32> @vsllwil_wu_hu(<16 x i16> %a) nounwind {
 ; CHECK-LABEL: vsllwil_wu_hu:
 ; CHECK:       # %bb.0: # %entry
-; CHECK-NEXT:    vpickve2gr.h $a0, $vr0, 0
-; CHECK-NEXT:    vinsgr2vr.h $vr1, $a0, 0
-; CHECK-NEXT:    vpickve2gr.h $a0, $vr0, 1
-; CHECK-NEXT:    vinsgr2vr.h $vr1, $a0, 1
-; CHECK-NEXT:    vpickve2gr.h $a0, $vr0, 2
-; CHECK-NEXT:    vinsgr2vr.h $vr1, $a0, 2
-; CHECK-NEXT:    vpickve2gr.h $a0, $vr0, 3
-; CHECK-NEXT:    vinsgr2vr.h $vr1, $a0, 3
-; CHECK-NEXT:    xvpermi.d $xr0, $xr0, 14
-; CHECK-NEXT:    vpickve2gr.h $a0, $vr0, 0
-; CHECK-NEXT:    vinsgr2vr.h $vr1, $a0, 4
-; CHECK-NEXT:    vpickve2gr.h $a0, $vr0, 1
-; CHECK-NEXT:    vinsgr2vr.h $vr1, $a0, 5
-; CHECK-NEXT:    vpickve2gr.h $a0, $vr0, 2
-; CHECK-NEXT:    vinsgr2vr.h $vr1, $a0, 6
-; CHECK-NEXT:    vpickve2gr.h $a0, $vr0, 3
-; CHECK-NEXT:    vinsgr2vr.h $vr1, $a0, 7
-; CHECK-NEXT:    vext2xv.wu.hu $xr0, $xr1
-; CHECK-NEXT:    xvslli.w $xr0, $xr0, 15
+; CHECK-NEXT:    xvsllwil.wu.hu $xr0, $xr0, 15
 ; CHECK-NEXT:    ret
 entry:
   %0 = shufflevector <16 x i16> %a, <16 x i16> poison,
@@ -185,16 +72,7 @@ entry:
 define <4 x i64> @vsllwil_du_wu(<8 x i32> %a) nounwind {
 ; CHECK-LABEL: vsllwil_du_wu:
 ; CHECK:       # %bb.0: # %entry
-; CHECK-NEXT:    xvpickve2gr.w $a0, $xr0, 0
-; CHECK-NEXT:    vinsgr2vr.w $vr1, $a0, 0
-; CHECK-NEXT:    xvpickve2gr.w $a0, $xr0, 1
-; CHECK-NEXT:    vinsgr2vr.w $vr1, $a0, 1
-; CHECK-NEXT:    xvpickve2gr.w $a0, $xr0, 4
-; CHECK-NEXT:    vinsgr2vr.w $vr1, $a0, 2
-; CHECK-NEXT:    xvpickve2gr.w $a0, $xr0, 5
-; CHECK-NEXT:    vinsgr2vr.w $vr1, $a0, 3
-; CHECK-NEXT:    vext2xv.du.wu $xr0, $xr1
-; CHECK-NEXT:    xvslli.d $xr0, $xr0, 31
+; CHECK-NEXT:    xvsllwil.du.wu $xr0, $xr0, 31
 ; CHECK-NEXT:    ret
 entry:
   %0 = shufflevector <8 x i32> %a, <8 x i32> poison,

@@ -5,9 +5,7 @@
 define <8 x i16> @vsllwil_h_b(<16 x i8> %a) nounwind {
 ; CHECK-LABEL: vsllwil_h_b:
 ; CHECK:       # %bb.0: # %entry
-; CHECK-NEXT:    vslti.b $vr1, $vr0, 0
-; CHECK-NEXT:    vilvl.b $vr0, $vr1, $vr0
-; CHECK-NEXT:    vslli.h $vr0, $vr0, 1
+; CHECK-NEXT:    vsllwil.h.b $vr0, $vr0, 1
 ; CHECK-NEXT:    ret
 entry:
   %0 = shufflevector <16 x i8> %a, <16 x i8> poison,
@@ -20,9 +18,7 @@ entry:
 define <4 x i32> @vsllwil_w_h(<8 x i16> %a) nounwind {
 ; CHECK-LABEL: vsllwil_w_h:
 ; CHECK:       # %bb.0: # %entry
-; CHECK-NEXT:    vslti.h $vr1, $vr0, 0
-; CHECK-NEXT:    vilvl.h $vr0, $vr1, $vr0
-; CHECK-NEXT:    vslli.w $vr0, $vr0, 15
+; CHECK-NEXT:    vsllwil.w.h $vr0, $vr0, 15
 ; CHECK-NEXT:    ret
 entry:
   %0 = shufflevector <8 x i16> %a, <8 x i16> poison, <4 x i32> <i32 0, i32 1, i32 2, i32 3>
@@ -34,9 +30,7 @@ entry:
 define <2 x i64> @vsllwil_d_w(<4 x i32> %a) nounwind {
 ; CHECK-LABEL: vsllwil_d_w:
 ; CHECK:       # %bb.0: # %entry
-; CHECK-NEXT:    vslti.w $vr1, $vr0, 0
-; CHECK-NEXT:    vilvl.w $vr0, $vr1, $vr0
-; CHECK-NEXT:    vslli.d $vr0, $vr0, 31
+; CHECK-NEXT:    vsllwil.d.w $vr0, $vr0, 31
 ; CHECK-NEXT:    ret
 entry:
   %0 = shufflevector <4 x i32> %a, <4 x i32> poison, <2 x i32> <i32 0, i32 1>
@@ -48,9 +42,7 @@ entry:
 define <8 x i16> @vsllwil_hu_bu(<16 x i8> %a) nounwind {
 ; CHECK-LABEL: vsllwil_hu_bu:
 ; CHECK:       # %bb.0: # %entry
-; CHECK-NEXT:    vrepli.b $vr1, 0
-; CHECK-NEXT:    vilvl.b $vr0, $vr1, $vr0
-; CHECK-NEXT:    vslli.h $vr0, $vr0, 1
+; CHECK-NEXT:    vsllwil.hu.bu $vr0, $vr0, 1
 ; CHECK-NEXT:    ret
 entry:
   %0 = shufflevector <16 x i8> %a, <16 x i8> poison,
@@ -63,9 +55,7 @@ entry:
 define <4 x i32> @vsllwil_wu_hu(<8 x i16> %a) nounwind {
 ; CHECK-LABEL: vsllwil_wu_hu:
 ; CHECK:       # %bb.0: # %entry
-; CHECK-NEXT:    vrepli.b $vr1, 0
-; CHECK-NEXT:    vilvl.h $vr0, $vr1, $vr0
-; CHECK-NEXT:    vslli.w $vr0, $vr0, 15
+; CHECK-NEXT:    vsllwil.wu.hu $vr0, $vr0, 15
 ; CHECK-NEXT:    ret
 entry:
   %0 = shufflevector <8 x i16> %a, <8 x i16> poison, <4 x i32> <i32 0, i32 1, i32 2, i32 3>
@@ -77,9 +67,7 @@ entry:
 define <2 x i64> @vsllwil_du_wu(<4 x i32> %a) nounwind {
 ; CHECK-LABEL: vsllwil_du_wu:
 ; CHECK:       # %bb.0: # %entry
-; CHECK-NEXT:    vrepli.b $vr1, 0
-; CHECK-NEXT:    vilvl.w $vr0, $vr1, $vr0
-; CHECK-NEXT:    vslli.d $vr0, $vr0, 31
+; CHECK-NEXT:    vsllwil.du.wu $vr0, $vr0, 31
 ; CHECK-NEXT:    ret
 entry:
   %0 = shufflevector <4 x i32> %a, <4 x i32> poison, <2 x i32> <i32 0, i32 1>
