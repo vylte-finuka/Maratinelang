@@ -988,7 +988,8 @@ private:
       Symbol::Flag::OmpIsDevicePtr, Symbol::Flag::OmpHasDeviceAddr};
 
   Symbol::Flags privateDataSharingAttributeFlags{Symbol::Flag::OmpPrivate,
-      Symbol::Flag::OmpFirstPrivate, Symbol::Flag::OmpLastPrivate};
+      Symbol::Flag::OmpFirstPrivate, Symbol::Flag::OmpLastPrivate,
+      Symbol::Flag::OmpLinear};
 
   Symbol::Flags ompFlagsRequireNewSymbol{Symbol::Flag::OmpPrivate,
       Symbol::Flag::OmpLinear, Symbol::Flag::OmpFirstPrivate,
@@ -3261,6 +3262,8 @@ void OmpAttributeVisitor::CheckObjectIsPrivatizable(
     clauseName = "FIRSTPRIVATE";
   } else if (ompFlag == Symbol::Flag::OmpLastPrivate) {
     clauseName = "LASTPRIVATE";
+  } else if (ompFlag == Symbol::Flag::OmpLinear) {
+    clauseName = "LINEAR";
   }
 
   if (SymbolOrEquivalentIsInNamelist(symbol)) {
