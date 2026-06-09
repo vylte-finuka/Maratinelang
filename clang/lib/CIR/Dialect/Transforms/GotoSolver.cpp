@@ -92,8 +92,8 @@ void GotoSolverPass::runOnOperation() {
   if (hasLabel) {
     mlir::AttrTypeWalker walker;
     walker.addWalk([&](cir::BlockAddressAttr ba) {
-      constBlockAddrLabels[ba.getFunc().getValue()].insert(
-          ba.getLabel().getValue());
+      constBlockAddrLabels[ba.getBlockAddrInfo().getFunc().getValue()].insert(
+          ba.getBlockAddrInfo().getLabel().getValue());
     });
     getOperation()->walk([&](mlir::Operation *op) {
       for (const mlir::NamedAttribute &na : op->getAttrs())

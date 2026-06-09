@@ -1503,18 +1503,17 @@ def CIR_BlockAddressAttr
   }];
 
   let parameters = (ins AttributeSelfTypeParameter<"">:$type,
-                        "mlir::FlatSymbolRefAttr":$func,
-                        "mlir::StringAttr":$label);
+                        "cir::BlockAddrInfoAttr":$block_addr_info);
 
   let builders = [
     AttrBuilderWithInferredContext<(ins "mlir::Type":$type,
-                                        "mlir::FlatSymbolRefAttr":$func,
-                                        "mlir::StringAttr":$label), [{
-      return $_get(type.getContext(), type, func, label);
+                                        "cir::BlockAddrInfoAttr":$block_addr_info), [{
+      return $_get(type.getContext(), type, block_addr_info);
     }]>
   ];
 
-  let assemblyFormat = "`<` $func `,` $label `>`";
+  // Custom format: `<` func `,` label `>`  (mirrors BlockAddrInfoAttr).
+  let hasCustomAssemblyFormat = 1;
 
   // A block address is always a plain void pointer, never a C++ ABI type.
   let canHaveIllegalCXXABIType = 0;

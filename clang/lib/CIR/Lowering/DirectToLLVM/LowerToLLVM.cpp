@@ -671,8 +671,7 @@ mlir::Value CIRAttrToValue::visitCirAttr(cir::BlockAddressAttr attr) {
   mlir::MLIRContext *ctx = rewriter.getContext();
   mlir::Location loc = parentOp->getLoc();
 
-  cir::BlockAddrInfoAttr blockInfo =
-      cir::BlockAddrInfoAttr::get(ctx, attr.getFunc(), attr.getLabel());
+  cir::BlockAddrInfoAttr blockInfo = attr.getBlockAddrInfo();
 
   mlir::LLVM::BlockTagOp matchLabel = blockInfoAddr.lookupBlockTag(blockInfo);
   mlir::LLVM::BlockTagAttr tagAttr;
@@ -682,7 +681,7 @@ mlir::Value CIRAttrToValue::visitCirAttr(cir::BlockAddressAttr attr) {
     tagAttr = matchLabel.getTag();
 
   auto blkAddr =
-      mlir::LLVM::BlockAddressAttr::get(ctx, attr.getFunc(), tagAttr);
+      mlir::LLVM::BlockAddressAttr::get(ctx, blockInfo.getFunc(), tagAttr);
   auto newOp = mlir::LLVM::BlockAddressOp::create(
       rewriter, loc, mlir::LLVM::LLVMPointerType::get(ctx), blkAddr);
   if (!matchLabel)

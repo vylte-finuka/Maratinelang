@@ -1537,7 +1537,7 @@ ConstantLValueEmitter::VisitAddrLabelExpr(const AddrLabelExpr *e) {
   auto info = cir::BlockAddrInfoAttr::get(ctx, func.getSymName(),
                                           e->getLabel()->getName());
   cgf.takeAddressOfConstantLabel(info);
-  return cir::BlockAddressAttr::get(ptrTy, info.getFunc(), info.getLabel());
+  return cir::BlockAddressAttr::get(ptrTy, info);
 }
 
 ConstantLValue ConstantLValueEmitter::VisitCallExpr(const CallExpr *e) {

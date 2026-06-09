@@ -852,6 +852,28 @@ RecordLayoutAttr cir::getRecordLayout(mlir::ModuleOp module,
 }
 
 //===----------------------------------------------------------------------===//
+// CIR BlockAddressAttr
+//===----------------------------------------------------------------------===//
+
+// Print: `<` func `,` label `>`  (mirrors BlockAddrInfoAttr's format so the
+// two attributes share the same human-readable representation at their
+// respective assembly positions).
+void BlockAddressAttr::print(AsmPrinter &printer) const {
+  BlockAddrInfoAttr info = getBlockAddrInfo();
+  printer << '<' << info.getFunc() << ", " << info.getLabel() << '>';
+}
+
+Attribute BlockAddressAttr::parse(AsmParser &parser, Type type) {
+  mlir::FlatSymbolRefAttr func;
+  mlir::StringAttr label;
+  if (parser.parseLess() || parser.parseAttribute(func) ||
+      parser.parseComma() || parser.parseAttribute(label) ||
+      parser.parseGreater())
+    return {};
+  return get(type, BlockAddrInfoAttr::get(parser.getContext(), func, label));
+}
+
+//===----------------------------------------------------------------------===//
 // CIR Dialect
 //===----------------------------------------------------------------------===//
 
