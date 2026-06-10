@@ -533,7 +533,7 @@ void Flang::AddAMDGPUTargetArgs(const ArgList &Args,
   }
 
   const ToolChain &TC = getToolChain();
-  TC.addClangTargetOptions(Args, CmdArgs, Action::OffloadKind::OFK_OpenMP);
+  TC.addClangTargetOptions(Args, CmdArgs, "", Action::OffloadKind::OFK_OpenMP);
 }
 
 void Flang::AddNVPTXTargetArgs(const ArgList &Args,
@@ -698,8 +698,8 @@ void Flang::addOffloadOptions(Compilation &C, const InputInfoList &Inputs,
 
   // Tell the frontend when it is compiling for an offloading device, regardless
   // of offloading programming model.
-  if (IsHostOffloadingAction)
-    CmdArgs.push_back("-offload-device");
+  if (JA.getOffloadingDeviceKind() > Action::OFK_Host)
+    CmdArgs.push_back("-foffload-device");
 
   // Skips the primary input file, which is the input file that the compilation
   // proccess will be executed upon (e.g. the host bitcode file) and
