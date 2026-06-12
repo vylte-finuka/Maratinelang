@@ -220,9 +220,10 @@ class ScriptExpectWriter:
                 assert expected_value is None
                 self.scope_expect_rewrites[expect] = []
                 return
+            if expected_value is not None:
+                return
             assert isinstance(expect, Value), "Non-Value expects currently unsupported"
-            if expected_value is None:
-                self.unknown_expect_rewrites[expect] = []
+            self.unknown_expect_rewrites[expect] = []
 
         script = dext_ir.script
         assert (
