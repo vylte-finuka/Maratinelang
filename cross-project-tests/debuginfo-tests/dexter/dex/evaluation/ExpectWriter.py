@@ -165,7 +165,7 @@ class StepExpectWriter:
         self.script = script
         self.state_match = get_active_where_matches(script, step, state_match_context)
         active_expects = {
-            expect
+            expect: where_match.frame_idx
             for where_match in self.state_match.values()
             for expect in where_match.active_expects
         }
@@ -175,14 +175,19 @@ class StepExpectWriter:
         def add_expected_values(expect: Expect, expected_value: Any, scope: Scope):
             if expect not in active_expects or expected_value is not None:
                 return
+            expect_frame_idx = active_expects[expect]
             if (expr := expect.get_watched_expr()) is not None:
                 self.expect_value_matches[expect] = ExpectedValueWriter(
-                    expect, step.watches[expr]
+                    expect, step.frames[expect_frame_idx].watches[expr]
                 )
             elif (scope_name := expect.get_watched_scope()) is not None:
-                scope_vars = step.scope_watches.get(scope_name, [])
+                scope_vars = step.frames[expect_frame_idx].scope_watches.get(
+                    scope_name, []
+                )
                 self.expect_scope_matches[expect] = ExpectedScopeWriter(
-                    expect, step, [step.watches[var] for var in scope_vars]
+                    expect,
+                    step,
+                    [step.frames[expect_frame_idx].watches[var] for var in scope_vars],
                 )
             else:
                 raise Error(

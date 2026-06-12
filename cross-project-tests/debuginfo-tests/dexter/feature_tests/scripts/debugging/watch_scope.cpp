@@ -18,8 +18,8 @@ int main() {
 // CHECK:      Step 0
 // CHECK:          main
 // CHECK:      Variable Scopes:
-// CHECK-NEXT:   Globals: [::There]
 // CHECK-NEXT:   Locals: [One, Red]
+// CHECK-NEXT:   Globals: [::There]
 // CHECK-NEXT: Variables:
 // CHECK-NEXT:   "::There": (char[5]) "Here"
 // CHECK-NEXT:     "[0]": (char) 'H'
