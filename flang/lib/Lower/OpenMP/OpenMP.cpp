@@ -605,6 +605,8 @@ protected:
   virtual OmpDirectiveSet processDirective(lower::pft::Evaluation &eval,
                                            llvm::omp::Directive dir) override {
     using namespace llvm::omp;
+    assert(execMode == mlir::omp::TargetExecMode::generic &&
+           "unexpected non-default exec mode during pattern match");
 
     switch (dir) {
     case OMPD_target:
