@@ -240,8 +240,11 @@ static int cmdPublish(raw_ostream &OS) {
 int main(int argc, char **argv) {
   InitLLVM X(argc, argv);
 
+  cl::SetVersionPrinter([](raw_ostream &OS) {
+    OS << "marai v0.1 Naverta build 26160621 beta\n";
+  });
   cl::ParseCommandLineOptions(argc, argv,
-    "marai — Maratine Package Manager (MABI 1.0.1)\n");
+    "marai - Maratine Package Manager (MABI 1.0.1)\n");
 
   raw_ostream &OS = outs();
 

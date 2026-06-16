@@ -260,6 +260,270 @@ build install\local: phony CMakeFiles\install\local.util
 # D:/Downloads/Vyft_product/Maratinelang/maratinec/maratine/CMakeLists.txt
 # =============================================================================
 
+# =============================================================================
+# Object build statements for EXECUTABLE target marai
+
+
+#############################################
+# Order-only phony target for marai
+
+build cmake_object_order_depends_target_marai: phony || .
+
+build tools\marai\CMakeFiles\marai.dir\Marai.cpp.obj: CXX_COMPILER__marai_unscanned_Release D$:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\tools\marai\Marai.cpp || cmake_object_order_depends_target_marai
+  CONFIG = Release
+  DEFINES = -DUNICODE -D_CRT_NONSTDC_NO_DEPRECATE -D_CRT_NONSTDC_NO_WARNINGS -D_CRT_SECURE_NO_DEPRECATE -D_CRT_SECURE_NO_WARNINGS -D_SCL_SECURE_NO_DEPRECATE -D_SCL_SECURE_NO_WARNINGS -D_UNICODE -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS
+  FLAGS = /I"D:/VisualS/VC/Tools/MSVC/14.51.36231/include" /I"C:/Program Files (x86)/Windows Kits/10/Include/10.0.26100.0/ucrt" /I"C:/Program Files (x86)/Windows Kits/10/Include/10.0.26100.0/um" /I"C:/Program Files (x86)/Windows Kits/10/Include/10.0.26100.0/shared" /I"D:/VisualS/VC/Tools/Llvm/x64/lib/clang/20/include" /D_WIN64 /D_AMD64_ /DUNICODE /D_UNICODE /D_CRT_SECURE_NO_WARNINGS /EHsc /DWIN32 /D_WINDOWS /EHsc /O2 /Ob2 /DNDEBUG -std:c++17 -MD /W3 -Wno-deprecated-declarations -Wno-unknown-pragmas
+  INCLUDES = -ID:\llvm-install\include -ID:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\include -ID:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\tools\marai
+  OBJECT_DIR = tools\marai\CMakeFiles\marai.dir
+  OBJECT_FILE_DIR = tools\marai\CMakeFiles\marai.dir
+  TARGET_COMPILE_PDB = tools\marai\CMakeFiles\marai.dir\
+  TARGET_PDB = tools\marai\marai.pdb
+
+build tools\marai\CMakeFiles\marai.dir\MaraiABI.cpp.obj: CXX_COMPILER__marai_unscanned_Release D$:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\tools\marai\MaraiABI.cpp || cmake_object_order_depends_target_marai
+  CONFIG = Release
+  DEFINES = -DUNICODE -D_CRT_NONSTDC_NO_DEPRECATE -D_CRT_NONSTDC_NO_WARNINGS -D_CRT_SECURE_NO_DEPRECATE -D_CRT_SECURE_NO_WARNINGS -D_SCL_SECURE_NO_DEPRECATE -D_SCL_SECURE_NO_WARNINGS -D_UNICODE -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS
+  FLAGS = /I"D:/VisualS/VC/Tools/MSVC/14.51.36231/include" /I"C:/Program Files (x86)/Windows Kits/10/Include/10.0.26100.0/ucrt" /I"C:/Program Files (x86)/Windows Kits/10/Include/10.0.26100.0/um" /I"C:/Program Files (x86)/Windows Kits/10/Include/10.0.26100.0/shared" /I"D:/VisualS/VC/Tools/Llvm/x64/lib/clang/20/include" /D_WIN64 /D_AMD64_ /DUNICODE /D_UNICODE /D_CRT_SECURE_NO_WARNINGS /EHsc /DWIN32 /D_WINDOWS /EHsc /O2 /Ob2 /DNDEBUG -std:c++17 -MD /W3 -Wno-deprecated-declarations -Wno-unknown-pragmas
+  INCLUDES = -ID:\llvm-install\include -ID:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\include -ID:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\tools\marai
+  OBJECT_DIR = tools\marai\CMakeFiles\marai.dir
+  OBJECT_FILE_DIR = tools\marai\CMakeFiles\marai.dir
+  TARGET_COMPILE_PDB = tools\marai\CMakeFiles\marai.dir\
+  TARGET_PDB = tools\marai\marai.pdb
+
+build tools\marai\CMakeFiles\marai.dir\MaraiAudit.cpp.obj: CXX_COMPILER__marai_unscanned_Release D$:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\tools\marai\MaraiAudit.cpp || cmake_object_order_depends_target_marai
+  CONFIG = Release
+  DEFINES = -DUNICODE -D_CRT_NONSTDC_NO_DEPRECATE -D_CRT_NONSTDC_NO_WARNINGS -D_CRT_SECURE_NO_DEPRECATE -D_CRT_SECURE_NO_WARNINGS -D_SCL_SECURE_NO_DEPRECATE -D_SCL_SECURE_NO_WARNINGS -D_UNICODE -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS
+  FLAGS = /I"D:/VisualS/VC/Tools/MSVC/14.51.36231/include" /I"C:/Program Files (x86)/Windows Kits/10/Include/10.0.26100.0/ucrt" /I"C:/Program Files (x86)/Windows Kits/10/Include/10.0.26100.0/um" /I"C:/Program Files (x86)/Windows Kits/10/Include/10.0.26100.0/shared" /I"D:/VisualS/VC/Tools/Llvm/x64/lib/clang/20/include" /D_WIN64 /D_AMD64_ /DUNICODE /D_UNICODE /D_CRT_SECURE_NO_WARNINGS /EHsc /DWIN32 /D_WINDOWS /EHsc /O2 /Ob2 /DNDEBUG -std:c++17 -MD /W3 -Wno-deprecated-declarations -Wno-unknown-pragmas
+  INCLUDES = -ID:\llvm-install\include -ID:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\include -ID:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\tools\marai
+  OBJECT_DIR = tools\marai\CMakeFiles\marai.dir
+  OBJECT_FILE_DIR = tools\marai\CMakeFiles\marai.dir
+  TARGET_COMPILE_PDB = tools\marai\CMakeFiles\marai.dir\
+  TARGET_PDB = tools\marai\marai.pdb
+
+build tools\marai\CMakeFiles\marai.dir\MaraiInstall.cpp.obj: CXX_COMPILER__marai_unscanned_Release D$:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\tools\marai\MaraiInstall.cpp || cmake_object_order_depends_target_marai
+  CONFIG = Release
+  DEFINES = -DUNICODE -D_CRT_NONSTDC_NO_DEPRECATE -D_CRT_NONSTDC_NO_WARNINGS -D_CRT_SECURE_NO_DEPRECATE -D_CRT_SECURE_NO_WARNINGS -D_SCL_SECURE_NO_DEPRECATE -D_SCL_SECURE_NO_WARNINGS -D_UNICODE -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS
+  FLAGS = /I"D:/VisualS/VC/Tools/MSVC/14.51.36231/include" /I"C:/Program Files (x86)/Windows Kits/10/Include/10.0.26100.0/ucrt" /I"C:/Program Files (x86)/Windows Kits/10/Include/10.0.26100.0/um" /I"C:/Program Files (x86)/Windows Kits/10/Include/10.0.26100.0/shared" /I"D:/VisualS/VC/Tools/Llvm/x64/lib/clang/20/include" /D_WIN64 /D_AMD64_ /DUNICODE /D_UNICODE /D_CRT_SECURE_NO_WARNINGS /EHsc /DWIN32 /D_WINDOWS /EHsc /O2 /Ob2 /DNDEBUG -std:c++17 -MD /W3 -Wno-deprecated-declarations -Wno-unknown-pragmas
+  INCLUDES = -ID:\llvm-install\include -ID:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\include -ID:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\tools\marai
+  OBJECT_DIR = tools\marai\CMakeFiles\marai.dir
+  OBJECT_FILE_DIR = tools\marai\CMakeFiles\marai.dir
+  TARGET_COMPILE_PDB = tools\marai\CMakeFiles\marai.dir\
+  TARGET_PDB = tools\marai\marai.pdb
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target marai
+
+
+#############################################
+# Link the executable tools\marai\marai.exe
+
+build tools\marai\marai.exe: CXX_EXECUTABLE_LINKER__marai_Release tools\marai\CMakeFiles\marai.dir\Marai.cpp.obj tools\marai\CMakeFiles\marai.dir\MaraiABI.cpp.obj tools\marai\CMakeFiles\marai.dir\MaraiAudit.cpp.obj tools\marai\CMakeFiles\marai.dir\MaraiInstall.cpp.obj | D$:\llvm-install\lib\LLVMCore.lib D$:\llvm-install\lib\LLVMSupport.lib D$:\llvm-install\lib\LLVMDemangle.lib D$:\llvm-install\lib\LLVMBinaryFormat.lib D$:\llvm-install\lib\LLVMRemarks.lib D$:\llvm-install\lib\LLVMBitstreamReader.lib D$:\llvm-install\lib\LLVMTargetParser.lib D$:\llvm-install\lib\LLVMSupport.lib D$:\llvm-install\lib\LLVMDemangle.lib
+  CONFIG = Release
+  FLAGS = /I"D:/VisualS/VC/Tools/MSVC/14.51.36231/include" /I"C:/Program Files (x86)/Windows Kits/10/Include/10.0.26100.0/ucrt" /I"C:/Program Files (x86)/Windows Kits/10/Include/10.0.26100.0/um" /I"C:/Program Files (x86)/Windows Kits/10/Include/10.0.26100.0/shared" /I"D:/VisualS/VC/Tools/Llvm/x64/lib/clang/20/include" /D_WIN64 /D_AMD64_ /DUNICODE /D_UNICODE /D_CRT_SECURE_NO_WARNINGS /EHsc /DWIN32 /D_WINDOWS /EHsc /O2 /Ob2 /DNDEBUG -MD
+  LINK_FLAGS = /LIBPATH:"D:/VisualS/VC/Tools/MSVC/14.51.36231/lib/x64" /LIBPATH:"C:/Program Files (x86)/Windows Kits/10/Lib/10.0.26100.0/ucrt/x64" /LIBPATH:"C:/Program Files (x86)/Windows Kits/10/Lib/10.0.26100.0/um/x64" /machine:x64 /machine:x64 /INCREMENTAL:NO /subsystem:console
+  LINK_LIBRARIES = D:\llvm-install\lib\LLVMCore.lib  D:\llvm-install\lib\LLVMSupport.lib  D:\llvm-install\lib\LLVMDemangle.lib  D:\llvm-install\lib\LLVMBinaryFormat.lib  D:\llvm-install\lib\LLVMRemarks.lib  D:\llvm-install\lib\LLVMBitstreamReader.lib  D:\llvm-install\lib\LLVMTargetParser.lib  D:\llvm-install\lib\LLVMSupport.lib  D:\llvm-install\lib\LLVMDemangle.lib  psapi.lib  shell32.lib  ole32.lib  uuid.lib  advapi32.lib  ws2_32.lib  ntdll.lib  delayimp.lib  -delayload:shell32.dll  -delayload:ole32.dll  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
+  LINK_PATH = -LIBPATH:D:\llvm-install\lib
+  OBJECT_DIR = tools\marai\CMakeFiles\marai.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_COMPILE_PDB = tools\marai\CMakeFiles\marai.dir\
+  TARGET_FILE = tools\marai\marai.exe
+  TARGET_IMPLIB = tools\marai\marai.lib
+  TARGET_PDB = tools\marai\marai.pdb
+
+
+#############################################
+# Utility command for test
+
+build tools\marai\CMakeFiles\test.util: CUSTOM_COMMAND
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D D:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\build\tools\marai && D:\Cmake\bin\ctest.exe "
+  DESC = Running tests...
+  pool = console
+  restat = 1
+
+build tools\marai\test: phony tools\marai\CMakeFiles\test.util
+
+
+#############################################
+# Utility command for edit_cache
+
+build tools\marai\CMakeFiles\edit_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D D:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\build\tools\marai && D:\Cmake\bin\cmake-gui.exe -SD:\Downloads\Vyft_product\Maratinelang\maratinec\maratine -BD:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\build"
+  DESC = Running CMake cache editor...
+  pool = console
+  restat = 1
+
+build tools\marai\edit_cache: phony tools\marai\CMakeFiles\edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build tools\marai\CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D D:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\build\tools\marai && D:\Cmake\bin\cmake.exe --regenerate-during-build -SD:\Downloads\Vyft_product\Maratinelang\maratinec\maratine -BD:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\build"
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build tools\marai\rebuild_cache: phony tools\marai\CMakeFiles\rebuild_cache.util
+
+
+#############################################
+# Utility command for list_install_components
+
+build tools\marai\list_install_components: phony
+
+
+#############################################
+# Utility command for install
+
+build tools\marai\CMakeFiles\install.util: CUSTOM_COMMAND tools\marai\all
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D D:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\build\tools\marai && D:\Cmake\bin\cmake.exe -P cmake_install.cmake"
+  DESC = Install the project...
+  pool = console
+  restat = 1
+
+build tools\marai\install: phony tools\marai\CMakeFiles\install.util
+
+
+#############################################
+# Utility command for install/local
+
+build tools\marai\CMakeFiles\install\local.util: CUSTOM_COMMAND tools\marai\all
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D D:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\build\tools\marai && D:\Cmake\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+  DESC = Installing only the local directory...
+  pool = console
+  restat = 1
+
+build tools\marai\install\local: phony tools\marai\CMakeFiles\install\local.util
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# D:/Downloads/Vyft_product/Maratinelang/maratinec/maratine/CMakeLists.txt
+# =============================================================================
+
+# =============================================================================
+# Object build statements for EXECUTABLE target marabug
+
+
+#############################################
+# Order-only phony target for marabug
+
+build cmake_object_order_depends_target_marabug: phony || .
+
+build tools\marabug\CMakeFiles\marabug.dir\MaraBug.cpp.obj: CXX_COMPILER__marabug_unscanned_Release D$:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\tools\marabug\MaraBug.cpp || cmake_object_order_depends_target_marabug
+  CONFIG = Release
+  DEFINES = -DUNICODE -D_CRT_NONSTDC_NO_DEPRECATE -D_CRT_NONSTDC_NO_WARNINGS -D_CRT_SECURE_NO_DEPRECATE -D_CRT_SECURE_NO_WARNINGS -D_SCL_SECURE_NO_DEPRECATE -D_SCL_SECURE_NO_WARNINGS -D_UNICODE -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS
+  FLAGS = /I"D:/VisualS/VC/Tools/MSVC/14.51.36231/include" /I"C:/Program Files (x86)/Windows Kits/10/Include/10.0.26100.0/ucrt" /I"C:/Program Files (x86)/Windows Kits/10/Include/10.0.26100.0/um" /I"C:/Program Files (x86)/Windows Kits/10/Include/10.0.26100.0/shared" /I"D:/VisualS/VC/Tools/Llvm/x64/lib/clang/20/include" /D_WIN64 /D_AMD64_ /DUNICODE /D_UNICODE /D_CRT_SECURE_NO_WARNINGS /EHsc /DWIN32 /D_WINDOWS /EHsc /O2 /Ob2 /DNDEBUG -std:c++17 -MD /W3 -Wno-deprecated-declarations -Wno-unknown-pragmas
+  INCLUDES = -ID:\llvm-install\include -ID:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\include -ID:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\tools\marabug
+  OBJECT_DIR = tools\marabug\CMakeFiles\marabug.dir
+  OBJECT_FILE_DIR = tools\marabug\CMakeFiles\marabug.dir
+  TARGET_COMPILE_PDB = tools\marabug\CMakeFiles\marabug.dir\
+  TARGET_PDB = tools\marabug\marabug.pdb
+
+build tools\marabug\CMakeFiles\marabug.dir\MaraBugSession.cpp.obj: CXX_COMPILER__marabug_unscanned_Release D$:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\tools\marabug\MaraBugSession.cpp || cmake_object_order_depends_target_marabug
+  CONFIG = Release
+  DEFINES = -DUNICODE -D_CRT_NONSTDC_NO_DEPRECATE -D_CRT_NONSTDC_NO_WARNINGS -D_CRT_SECURE_NO_DEPRECATE -D_CRT_SECURE_NO_WARNINGS -D_SCL_SECURE_NO_DEPRECATE -D_SCL_SECURE_NO_WARNINGS -D_UNICODE -D__STDC_CONSTANT_MACROS -D__STDC_FORMAT_MACROS -D__STDC_LIMIT_MACROS
+  FLAGS = /I"D:/VisualS/VC/Tools/MSVC/14.51.36231/include" /I"C:/Program Files (x86)/Windows Kits/10/Include/10.0.26100.0/ucrt" /I"C:/Program Files (x86)/Windows Kits/10/Include/10.0.26100.0/um" /I"C:/Program Files (x86)/Windows Kits/10/Include/10.0.26100.0/shared" /I"D:/VisualS/VC/Tools/Llvm/x64/lib/clang/20/include" /D_WIN64 /D_AMD64_ /DUNICODE /D_UNICODE /D_CRT_SECURE_NO_WARNINGS /EHsc /DWIN32 /D_WINDOWS /EHsc /O2 /Ob2 /DNDEBUG -std:c++17 -MD /W3 -Wno-deprecated-declarations -Wno-unknown-pragmas
+  INCLUDES = -ID:\llvm-install\include -ID:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\include -ID:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\tools\marabug
+  OBJECT_DIR = tools\marabug\CMakeFiles\marabug.dir
+  OBJECT_FILE_DIR = tools\marabug\CMakeFiles\marabug.dir
+  TARGET_COMPILE_PDB = tools\marabug\CMakeFiles\marabug.dir\
+  TARGET_PDB = tools\marabug\marabug.pdb
+
+
+# =============================================================================
+# Link build statements for EXECUTABLE target marabug
+
+
+#############################################
+# Link the executable tools\marabug\marabug.exe
+
+build tools\marabug\marabug.exe: CXX_EXECUTABLE_LINKER__marabug_Release tools\marabug\CMakeFiles\marabug.dir\MaraBug.cpp.obj tools\marabug\CMakeFiles\marabug.dir\MaraBugSession.cpp.obj | D$:\llvm-install\lib\LLVMCore.lib D$:\llvm-install\lib\LLVMSupport.lib D$:\llvm-install\lib\LLVMDemangle.lib D$:\llvm-install\lib\LLVMDebugInfoDWARF.lib D$:\llvm-install\lib\LLVMObject.lib D$:\llvm-install\lib\LLVMBinaryFormat.lib D$:\llvm-install\lib\LLVMIRReader.lib D$:\llvm-install\lib\LLVMBitReader.lib D$:\llvm-install\lib\LLVMAsmParser.lib D$:\llvm-install\lib\LLVMCore.lib D$:\llvm-install\lib\LLVMRemarks.lib D$:\llvm-install\lib\LLVMBitstreamReader.lib D$:\llvm-install\lib\LLVMMCParser.lib D$:\llvm-install\lib\LLVMMC.lib D$:\llvm-install\lib\LLVMTextAPI.lib D$:\llvm-install\lib\LLVMDebugInfoDWARFLowLevel.lib D$:\llvm-install\lib\LLVMBinaryFormat.lib D$:\llvm-install\lib\LLVMTargetParser.lib D$:\llvm-install\lib\LLVMSupport.lib D$:\llvm-install\lib\LLVMDemangle.lib
+  CONFIG = Release
+  FLAGS = /I"D:/VisualS/VC/Tools/MSVC/14.51.36231/include" /I"C:/Program Files (x86)/Windows Kits/10/Include/10.0.26100.0/ucrt" /I"C:/Program Files (x86)/Windows Kits/10/Include/10.0.26100.0/um" /I"C:/Program Files (x86)/Windows Kits/10/Include/10.0.26100.0/shared" /I"D:/VisualS/VC/Tools/Llvm/x64/lib/clang/20/include" /D_WIN64 /D_AMD64_ /DUNICODE /D_UNICODE /D_CRT_SECURE_NO_WARNINGS /EHsc /DWIN32 /D_WINDOWS /EHsc /O2 /Ob2 /DNDEBUG -MD
+  LINK_FLAGS = /LIBPATH:"D:/VisualS/VC/Tools/MSVC/14.51.36231/lib/x64" /LIBPATH:"C:/Program Files (x86)/Windows Kits/10/Lib/10.0.26100.0/ucrt/x64" /LIBPATH:"C:/Program Files (x86)/Windows Kits/10/Lib/10.0.26100.0/um/x64" /machine:x64 /machine:x64 /INCREMENTAL:NO /subsystem:console
+  LINK_LIBRARIES = D:\llvm-install\lib\LLVMCore.lib  D:\llvm-install\lib\LLVMSupport.lib  D:\llvm-install\lib\LLVMDemangle.lib  D:\llvm-install\lib\LLVMDebugInfoDWARF.lib  D:\llvm-install\lib\LLVMObject.lib  D:\llvm-install\lib\LLVMBinaryFormat.lib  D:\llvm-install\lib\LLVMIRReader.lib  D:\llvm-install\lib\LLVMBitReader.lib  D:\llvm-install\lib\LLVMAsmParser.lib  D:\llvm-install\lib\LLVMCore.lib  D:\llvm-install\lib\LLVMRemarks.lib  D:\llvm-install\lib\LLVMBitstreamReader.lib  D:\llvm-install\lib\LLVMMCParser.lib  D:\llvm-install\lib\LLVMMC.lib  D:\llvm-install\lib\LLVMTextAPI.lib  D:\llvm-install\lib\LLVMDebugInfoDWARFLowLevel.lib  D:\llvm-install\lib\LLVMBinaryFormat.lib  D:\llvm-install\lib\LLVMTargetParser.lib  D:\llvm-install\lib\LLVMSupport.lib  D:\llvm-install\lib\LLVMDemangle.lib  psapi.lib  shell32.lib  ole32.lib  uuid.lib  advapi32.lib  ws2_32.lib  ntdll.lib  delayimp.lib  -delayload:shell32.dll  -delayload:ole32.dll  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
+  LINK_PATH = -LIBPATH:D:\llvm-install\lib
+  OBJECT_DIR = tools\marabug\CMakeFiles\marabug.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_COMPILE_PDB = tools\marabug\CMakeFiles\marabug.dir\
+  TARGET_FILE = tools\marabug\marabug.exe
+  TARGET_IMPLIB = tools\marabug\marabug.lib
+  TARGET_PDB = tools\marabug\marabug.pdb
+
+
+#############################################
+# Utility command for test
+
+build tools\marabug\CMakeFiles\test.util: CUSTOM_COMMAND
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D D:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\build\tools\marabug && D:\Cmake\bin\ctest.exe "
+  DESC = Running tests...
+  pool = console
+  restat = 1
+
+build tools\marabug\test: phony tools\marabug\CMakeFiles\test.util
+
+
+#############################################
+# Utility command for edit_cache
+
+build tools\marabug\CMakeFiles\edit_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D D:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\build\tools\marabug && D:\Cmake\bin\cmake-gui.exe -SD:\Downloads\Vyft_product\Maratinelang\maratinec\maratine -BD:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\build"
+  DESC = Running CMake cache editor...
+  pool = console
+  restat = 1
+
+build tools\marabug\edit_cache: phony tools\marabug\CMakeFiles\edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build tools\marabug\CMakeFiles\rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D D:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\build\tools\marabug && D:\Cmake\bin\cmake.exe --regenerate-during-build -SD:\Downloads\Vyft_product\Maratinelang\maratinec\maratine -BD:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\build"
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build tools\marabug\rebuild_cache: phony tools\marabug\CMakeFiles\rebuild_cache.util
+
+
+#############################################
+# Utility command for list_install_components
+
+build tools\marabug\list_install_components: phony
+
+
+#############################################
+# Utility command for install
+
+build tools\marabug\CMakeFiles\install.util: CUSTOM_COMMAND tools\marabug\all
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D D:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\build\tools\marabug && D:\Cmake\bin\cmake.exe -P cmake_install.cmake"
+  DESC = Install the project...
+  pool = console
+  restat = 1
+
+build tools\marabug\install: phony tools\marabug\CMakeFiles\install.util
+
+
+#############################################
+# Utility command for install/local
+
+build tools\marabug\CMakeFiles\install\local.util: CUSTOM_COMMAND tools\marabug\all
+  COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D D:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\build\tools\marabug && D:\Cmake\bin\cmake.exe -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake"
+  DESC = Installing only the local directory...
+  pool = console
+  restat = 1
+
+build tools\marabug\install\local: phony tools\marabug\CMakeFiles\install\local.util
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
+# D:/Downloads/Vyft_product/Maratinelang/maratinec/maratine/CMakeLists.txt
+# =============================================================================
+
 
 #############################################
 # Utility command for test
@@ -329,6 +593,14 @@ build test\install\local: phony test\CMakeFiles\install\local.util
 # =============================================================================
 # Target aliases.
 
+build marabug: phony tools\marabug\marabug.exe
+
+build marabug.exe: phony tools\marabug\marabug.exe
+
+build marai: phony tools\marai\marai.exe
+
+build marai.exe: phony tools\marai\marai.exe
+
 build maratine-cc: phony maratine-cc.exe
 
 build maratine_compiler: phony maratine_compiler.lib
@@ -341,7 +613,7 @@ build maratine_compiler: phony maratine_compiler.lib
 #############################################
 # Folder: D:/Downloads/Vyft_product/Maratinelang/maratinec/maratine/build
 
-build all: phony maratine_compiler.lib maratine-cc.exe test\all
+build all: phony maratine_compiler.lib maratine-cc.exe tools\marai\all tools\marabug\all test\all
 
 # =============================================================================
 
@@ -351,20 +623,34 @@ build all: phony maratine_compiler.lib maratine-cc.exe test\all
 build test\all: phony
 
 # =============================================================================
+
+#############################################
+# Folder: D:/Downloads/Vyft_product/Maratinelang/maratinec/maratine/build/tools/marabug
+
+build tools\marabug\all: phony tools\marabug\marabug.exe
+
+# =============================================================================
+
+#############################################
+# Folder: D:/Downloads/Vyft_product/Maratinelang/maratinec/maratine/build/tools/marai
+
+build tools\marai\all: phony tools\marai\marai.exe
+
+# =============================================================================
 # Built-in targets
 
 
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja D$:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\build\cmake_install.cmake D$:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\build\test\cmake_install.cmake D$:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\build\CTestTestfile.cmake D$:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\build\test\CTestTestfile.cmake: RERUN_CMAKE | CMakeCache.txt CMakeFiles\4.1.0-rc1\CMakeCCompiler.cmake CMakeFiles\4.1.0-rc1\CMakeCXXCompiler.cmake CMakeFiles\4.1.0-rc1\CMakeRCCompiler.cmake CMakeFiles\4.1.0-rc1\CMakeSystem.cmake D$:\Cmake\share\cmake-4.1\Modules\CMakeCInformation.cmake D$:\Cmake\share\cmake-4.1\Modules\CMakeCXXInformation.cmake D$:\Cmake\share\cmake-4.1\Modules\CMakeCommonLanguageInclude.cmake D$:\Cmake\share\cmake-4.1\Modules\CMakeGenericSystem.cmake D$:\Cmake\share\cmake-4.1\Modules\CMakeInitializeConfigs.cmake D$:\Cmake\share\cmake-4.1\Modules\CMakeLanguageInformation.cmake D$:\Cmake\share\cmake-4.1\Modules\CMakeRCInformation.cmake D$:\Cmake\share\cmake-4.1\Modules\CMakeSystemSpecificInformation.cmake D$:\Cmake\share\cmake-4.1\Modules\CMakeSystemSpecificInitialize.cmake D$:\Cmake\share\cmake-4.1\Modules\Compiler\CMakeCommonCompilerMacros.cmake D$:\Cmake\share\cmake-4.1\Modules\Compiler\Clang-C.cmake D$:\Cmake\share\cmake-4.1\Modules\Compiler\Clang-CXX.cmake D$:\Cmake\share\cmake-4.1\Modules\Compiler\Clang.cmake D$:\Cmake\share\cmake-4.1\Modules\Internal\CMakeCLinkerInformation.cmake D$:\Cmake\share\cmake-4.1\Modules\Internal\CMakeCXXLinkerInformation.cmake D$:\Cmake\share\cmake-4.1\Modules\Internal\CMakeCommonLinkerInformation.cmake D$:\Cmake\share\cmake-4.1\Modules\Linker\LLD-C.cmake D$:\Cmake\share\cmake-4.1\Modules\Linker\LLD-CXX.cmake D$:\Cmake\share\cmake-4.1\Modules\Linker\LLD.cmake D$:\Cmake\share\cmake-4.1\Modules\Linker\MSVC.cmake D$:\Cmake\share\cmake-4.1\Modules\Platform\Linker\Windows-LLD-C.cmake D$:\Cmake\share\cmake-4.1\Modules\Platform\Linker\Windows-LLD-CXX.cmake D$:\Cmake\share\cmake-4.1\Modules\Platform\Linker\Windows-LLD.cmake D$:\Cmake\share\cmake-4.1\Modules\Platform\Linker\Windows-MSVC.cmake D$:\Cmake\share\cmake-4.1\Modules\Platform\Windows-Clang-C.cmake D$:\Cmake\share\cmake-4.1\Modules\Platform\Windows-Clang-CXX.cmake D$:\Cmake\share\cmake-4.1\Modules\Platform\Windows-Clang.cmake D$:\Cmake\share\cmake-4.1\Modules\Platform\Windows-Initialize.cmake D$:\Cmake\share\cmake-4.1\Modules\Platform\Windows-MSVC.cmake D$:\Cmake\share\cmake-4.1\Modules\Platform\Windows.cmake D$:\Cmake\share\cmake-4.1\Modules\Platform\WindowsPaths.cmake D$:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\CMakeLists.txt D$:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\test\CMakeLists.txt D$:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\windows-clang-cl.cmake D$:\llvm-install\lib\cmake\llvm\LLVM-Config.cmake D$:\llvm-install\lib\cmake\llvm\LLVMConfig.cmake D$:\llvm-install\lib\cmake\llvm\LLVMConfigVersion.cmake D$:\llvm-install\lib\cmake\llvm\LLVMExports-release.cmake D$:\llvm-install\lib\cmake\llvm\LLVMExports.cmake
+build build.ninja D$:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\build\cmake_install.cmake D$:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\build\tools\marai\cmake_install.cmake D$:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\build\tools\marabug\cmake_install.cmake D$:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\build\test\cmake_install.cmake D$:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\build\CTestTestfile.cmake D$:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\build\test\CTestTestfile.cmake: RERUN_CMAKE | CMakeCache.txt CMakeFiles\4.1.0-rc1\CMakeCCompiler.cmake CMakeFiles\4.1.0-rc1\CMakeCXXCompiler.cmake CMakeFiles\4.1.0-rc1\CMakeRCCompiler.cmake CMakeFiles\4.1.0-rc1\CMakeSystem.cmake D$:\Cmake\share\cmake-4.1\Modules\CMakeCInformation.cmake D$:\Cmake\share\cmake-4.1\Modules\CMakeCXXInformation.cmake D$:\Cmake\share\cmake-4.1\Modules\CMakeCommonLanguageInclude.cmake D$:\Cmake\share\cmake-4.1\Modules\CMakeGenericSystem.cmake D$:\Cmake\share\cmake-4.1\Modules\CMakeInitializeConfigs.cmake D$:\Cmake\share\cmake-4.1\Modules\CMakeLanguageInformation.cmake D$:\Cmake\share\cmake-4.1\Modules\CMakeRCInformation.cmake D$:\Cmake\share\cmake-4.1\Modules\CMakeSystemSpecificInformation.cmake D$:\Cmake\share\cmake-4.1\Modules\CMakeSystemSpecificInitialize.cmake D$:\Cmake\share\cmake-4.1\Modules\Compiler\CMakeCommonCompilerMacros.cmake D$:\Cmake\share\cmake-4.1\Modules\Compiler\Clang-C.cmake D$:\Cmake\share\cmake-4.1\Modules\Compiler\Clang-CXX.cmake D$:\Cmake\share\cmake-4.1\Modules\Compiler\Clang.cmake D$:\Cmake\share\cmake-4.1\Modules\Internal\CMakeCLinkerInformation.cmake D$:\Cmake\share\cmake-4.1\Modules\Internal\CMakeCXXLinkerInformation.cmake D$:\Cmake\share\cmake-4.1\Modules\Internal\CMakeCommonLinkerInformation.cmake D$:\Cmake\share\cmake-4.1\Modules\Linker\LLD-C.cmake D$:\Cmake\share\cmake-4.1\Modules\Linker\LLD-CXX.cmake D$:\Cmake\share\cmake-4.1\Modules\Linker\LLD.cmake D$:\Cmake\share\cmake-4.1\Modules\Linker\MSVC.cmake D$:\Cmake\share\cmake-4.1\Modules\Platform\Linker\Windows-LLD-C.cmake D$:\Cmake\share\cmake-4.1\Modules\Platform\Linker\Windows-LLD-CXX.cmake D$:\Cmake\share\cmake-4.1\Modules\Platform\Linker\Windows-LLD.cmake D$:\Cmake\share\cmake-4.1\Modules\Platform\Linker\Windows-MSVC.cmake D$:\Cmake\share\cmake-4.1\Modules\Platform\Windows-Clang-C.cmake D$:\Cmake\share\cmake-4.1\Modules\Platform\Windows-Clang-CXX.cmake D$:\Cmake\share\cmake-4.1\Modules\Platform\Windows-Clang.cmake D$:\Cmake\share\cmake-4.1\Modules\Platform\Windows-Initialize.cmake D$:\Cmake\share\cmake-4.1\Modules\Platform\Windows-MSVC.cmake D$:\Cmake\share\cmake-4.1\Modules\Platform\Windows.cmake D$:\Cmake\share\cmake-4.1\Modules\Platform\WindowsPaths.cmake D$:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\CMakeLists.txt D$:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\test\CMakeLists.txt D$:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\tools\marabug\CMakeLists.txt D$:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\tools\marai\CMakeLists.txt D$:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\windows-clang-cl.cmake D$:\llvm-install\lib\cmake\llvm\LLVM-Config.cmake D$:\llvm-install\lib\cmake\llvm\LLVMConfig.cmake D$:\llvm-install\lib\cmake\llvm\LLVMConfigVersion.cmake D$:\llvm-install\lib\cmake\llvm\LLVMExports-release.cmake D$:\llvm-install\lib\cmake\llvm\LLVMExports.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build CMakeCache.txt CMakeFiles\4.1.0-rc1\CMakeCCompiler.cmake CMakeFiles\4.1.0-rc1\CMakeCXXCompiler.cmake CMakeFiles\4.1.0-rc1\CMakeRCCompiler.cmake CMakeFiles\4.1.0-rc1\CMakeSystem.cmake D$:\Cmake\share\cmake-4.1\Modules\CMakeCInformation.cmake D$:\Cmake\share\cmake-4.1\Modules\CMakeCXXInformation.cmake D$:\Cmake\share\cmake-4.1\Modules\CMakeCommonLanguageInclude.cmake D$:\Cmake\share\cmake-4.1\Modules\CMakeGenericSystem.cmake D$:\Cmake\share\cmake-4.1\Modules\CMakeInitializeConfigs.cmake D$:\Cmake\share\cmake-4.1\Modules\CMakeLanguageInformation.cmake D$:\Cmake\share\cmake-4.1\Modules\CMakeRCInformation.cmake D$:\Cmake\share\cmake-4.1\Modules\CMakeSystemSpecificInformation.cmake D$:\Cmake\share\cmake-4.1\Modules\CMakeSystemSpecificInitialize.cmake D$:\Cmake\share\cmake-4.1\Modules\Compiler\CMakeCommonCompilerMacros.cmake D$:\Cmake\share\cmake-4.1\Modules\Compiler\Clang-C.cmake D$:\Cmake\share\cmake-4.1\Modules\Compiler\Clang-CXX.cmake D$:\Cmake\share\cmake-4.1\Modules\Compiler\Clang.cmake D$:\Cmake\share\cmake-4.1\Modules\Internal\CMakeCLinkerInformation.cmake D$:\Cmake\share\cmake-4.1\Modules\Internal\CMakeCXXLinkerInformation.cmake D$:\Cmake\share\cmake-4.1\Modules\Internal\CMakeCommonLinkerInformation.cmake D$:\Cmake\share\cmake-4.1\Modules\Linker\LLD-C.cmake D$:\Cmake\share\cmake-4.1\Modules\Linker\LLD-CXX.cmake D$:\Cmake\share\cmake-4.1\Modules\Linker\LLD.cmake D$:\Cmake\share\cmake-4.1\Modules\Linker\MSVC.cmake D$:\Cmake\share\cmake-4.1\Modules\Platform\Linker\Windows-LLD-C.cmake D$:\Cmake\share\cmake-4.1\Modules\Platform\Linker\Windows-LLD-CXX.cmake D$:\Cmake\share\cmake-4.1\Modules\Platform\Linker\Windows-LLD.cmake D$:\Cmake\share\cmake-4.1\Modules\Platform\Linker\Windows-MSVC.cmake D$:\Cmake\share\cmake-4.1\Modules\Platform\Windows-Clang-C.cmake D$:\Cmake\share\cmake-4.1\Modules\Platform\Windows-Clang-CXX.cmake D$:\Cmake\share\cmake-4.1\Modules\Platform\Windows-Clang.cmake D$:\Cmake\share\cmake-4.1\Modules\Platform\Windows-Initialize.cmake D$:\Cmake\share\cmake-4.1\Modules\Platform\Windows-MSVC.cmake D$:\Cmake\share\cmake-4.1\Modules\Platform\Windows.cmake D$:\Cmake\share\cmake-4.1\Modules\Platform\WindowsPaths.cmake D$:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\CMakeLists.txt D$:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\test\CMakeLists.txt D$:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\windows-clang-cl.cmake D$:\llvm-install\lib\cmake\llvm\LLVM-Config.cmake D$:\llvm-install\lib\cmake\llvm\LLVMConfig.cmake D$:\llvm-install\lib\cmake\llvm\LLVMConfigVersion.cmake D$:\llvm-install\lib\cmake\llvm\LLVMExports-release.cmake D$:\llvm-install\lib\cmake\llvm\LLVMExports.cmake: phony
+build CMakeCache.txt CMakeFiles\4.1.0-rc1\CMakeCCompiler.cmake CMakeFiles\4.1.0-rc1\CMakeCXXCompiler.cmake CMakeFiles\4.1.0-rc1\CMakeRCCompiler.cmake CMakeFiles\4.1.0-rc1\CMakeSystem.cmake D$:\Cmake\share\cmake-4.1\Modules\CMakeCInformation.cmake D$:\Cmake\share\cmake-4.1\Modules\CMakeCXXInformation.cmake D$:\Cmake\share\cmake-4.1\Modules\CMakeCommonLanguageInclude.cmake D$:\Cmake\share\cmake-4.1\Modules\CMakeGenericSystem.cmake D$:\Cmake\share\cmake-4.1\Modules\CMakeInitializeConfigs.cmake D$:\Cmake\share\cmake-4.1\Modules\CMakeLanguageInformation.cmake D$:\Cmake\share\cmake-4.1\Modules\CMakeRCInformation.cmake D$:\Cmake\share\cmake-4.1\Modules\CMakeSystemSpecificInformation.cmake D$:\Cmake\share\cmake-4.1\Modules\CMakeSystemSpecificInitialize.cmake D$:\Cmake\share\cmake-4.1\Modules\Compiler\CMakeCommonCompilerMacros.cmake D$:\Cmake\share\cmake-4.1\Modules\Compiler\Clang-C.cmake D$:\Cmake\share\cmake-4.1\Modules\Compiler\Clang-CXX.cmake D$:\Cmake\share\cmake-4.1\Modules\Compiler\Clang.cmake D$:\Cmake\share\cmake-4.1\Modules\Internal\CMakeCLinkerInformation.cmake D$:\Cmake\share\cmake-4.1\Modules\Internal\CMakeCXXLinkerInformation.cmake D$:\Cmake\share\cmake-4.1\Modules\Internal\CMakeCommonLinkerInformation.cmake D$:\Cmake\share\cmake-4.1\Modules\Linker\LLD-C.cmake D$:\Cmake\share\cmake-4.1\Modules\Linker\LLD-CXX.cmake D$:\Cmake\share\cmake-4.1\Modules\Linker\LLD.cmake D$:\Cmake\share\cmake-4.1\Modules\Linker\MSVC.cmake D$:\Cmake\share\cmake-4.1\Modules\Platform\Linker\Windows-LLD-C.cmake D$:\Cmake\share\cmake-4.1\Modules\Platform\Linker\Windows-LLD-CXX.cmake D$:\Cmake\share\cmake-4.1\Modules\Platform\Linker\Windows-LLD.cmake D$:\Cmake\share\cmake-4.1\Modules\Platform\Linker\Windows-MSVC.cmake D$:\Cmake\share\cmake-4.1\Modules\Platform\Windows-Clang-C.cmake D$:\Cmake\share\cmake-4.1\Modules\Platform\Windows-Clang-CXX.cmake D$:\Cmake\share\cmake-4.1\Modules\Platform\Windows-Clang.cmake D$:\Cmake\share\cmake-4.1\Modules\Platform\Windows-Initialize.cmake D$:\Cmake\share\cmake-4.1\Modules\Platform\Windows-MSVC.cmake D$:\Cmake\share\cmake-4.1\Modules\Platform\Windows.cmake D$:\Cmake\share\cmake-4.1\Modules\Platform\WindowsPaths.cmake D$:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\CMakeLists.txt D$:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\test\CMakeLists.txt D$:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\tools\marabug\CMakeLists.txt D$:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\tools\marai\CMakeLists.txt D$:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\windows-clang-cl.cmake D$:\llvm-install\lib\cmake\llvm\LLVM-Config.cmake D$:\llvm-install\lib\cmake\llvm\LLVMConfig.cmake D$:\llvm-install\lib\cmake\llvm\LLVMConfigVersion.cmake D$:\llvm-install\lib\cmake\llvm\LLVMExports-release.cmake D$:\llvm-install\lib\cmake\llvm\LLVMExports.cmake: phony
 
 
 #############################################

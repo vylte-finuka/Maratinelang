@@ -62,6 +62,42 @@ rule CUSTOM_COMMAND
 
 
 #############################################
+# Rule for compiling CXX files.
+
+rule CXX_COMPILER__marai_unscanned_Release
+  deps = msvc
+  command = ${LAUNCHER}${CODE_CHECK}D:\VisualS\VC\Tools\Llvm\x64\bin\clang-cl.exe  /nologo -TP $DEFINES $INCLUDES $FLAGS /showIncludes /Fo$out /Fd$TARGET_COMPILE_PDB -c -- $in
+  description = Building CXX object $out
+
+
+#############################################
+# Rule for linking CXX executable.
+
+rule CXX_EXECUTABLE_LINKER__marai_Release
+  command = C:\WINDOWS\system32\cmd.exe /C "$PRE_LINK && D:\Cmake\bin\cmake.exe -E vs_link_exe --msvc-ver=1933 --intdir=$OBJECT_DIR --rc=D:\VisualS\VC\Tools\Llvm\x64\bin\llvm-rc.exe --mt=D:\VisualS\VC\Tools\Llvm\x64\bin\llvm-mt.exe --manifests $MANIFESTS -- D:\VisualS\VC\Tools\Llvm\x64\bin\lld-link.exe /nologo $in  /out:$TARGET_FILE /implib:$TARGET_IMPLIB /pdb:$TARGET_PDB /version:0.0 $LINK_FLAGS $LINK_PATH $LINK_LIBRARIES && $POST_BUILD"
+  description = Linking CXX executable $TARGET_FILE
+  restat = $RESTAT
+
+
+#############################################
+# Rule for compiling CXX files.
+
+rule CXX_COMPILER__marabug_unscanned_Release
+  deps = msvc
+  command = ${LAUNCHER}${CODE_CHECK}D:\VisualS\VC\Tools\Llvm\x64\bin\clang-cl.exe  /nologo -TP $DEFINES $INCLUDES $FLAGS /showIncludes /Fo$out /Fd$TARGET_COMPILE_PDB -c -- $in
+  description = Building CXX object $out
+
+
+#############################################
+# Rule for linking CXX executable.
+
+rule CXX_EXECUTABLE_LINKER__marabug_Release
+  command = C:\WINDOWS\system32\cmd.exe /C "$PRE_LINK && D:\Cmake\bin\cmake.exe -E vs_link_exe --msvc-ver=1933 --intdir=$OBJECT_DIR --rc=D:\VisualS\VC\Tools\Llvm\x64\bin\llvm-rc.exe --mt=D:\VisualS\VC\Tools\Llvm\x64\bin\llvm-mt.exe --manifests $MANIFESTS -- D:\VisualS\VC\Tools\Llvm\x64\bin\lld-link.exe /nologo $in  /out:$TARGET_FILE /implib:$TARGET_IMPLIB /pdb:$TARGET_PDB /version:0.0 $LINK_FLAGS $LINK_PATH $LINK_LIBRARIES && $POST_BUILD"
+  description = Linking CXX executable $TARGET_FILE
+  restat = $RESTAT
+
+
+#############################################
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE

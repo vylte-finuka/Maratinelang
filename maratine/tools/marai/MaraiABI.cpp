@@ -25,7 +25,8 @@ using namespace marai;
 //----------------------------------------------------------------------
 
 TargetArch marai::parseArch(StringRef S) {
-  StringRef low = S.lower();
+  std::string lowStr = S.lower();
+  StringRef low(lowStr);
   if (low == "arm64" || low == "aarch64") return TargetArch::ARM64;
   if (low == "x64"   || low == "amd64" || low == "x86_64") return TargetArch::X64;
   return TargetArch::Unknown;
@@ -104,12 +105,12 @@ std::string ABIChecker::mangle(StringRef Module, StringRef Symbol,
 
 bool ABIChecker::validateMangling(StringRef Name, TargetArch Arch) {
   if (Arch == TargetArch::X64) {
-    if (!Name.startswith("_Mara_x64_")) return false;
+    if (!Name.starts_with("_Mara_x64_")) return false;
     StringRef rest = Name.drop_front(10);
     return rest.count('_') >= 2;
   }
-  if (!Name.startswith("_Mara_")) return false;
-  if (Name.startswith("_Mara_x64_")) return false; // X64 dans un contexte ARM64
+  if (!Name.starts_with("_Mara_")) return false;
+  if (Name.starts_with("_Mara_x64_")) return false; // X64 dans un contexte ARM64
   StringRef rest = Name.drop_front(6);
   return rest.count('_') >= 2;
 }
@@ -121,10 +122,10 @@ bool ABIChecker::validateMangling(StringRef Name, TargetArch Arch) {
 bool ABIChecker::demangle(StringRef Name, std::string &OutModule,
                            std::string &OutSymbol, TargetArch &OutArch) {
   StringRef rest;
-  if (Name.startswith("_Mara_x64_")) {
+  if (Name.starts_with("_Mara_x64_")) {
     OutArch = TargetArch::X64;
     rest = Name.drop_front(10);
-  } else if (Name.startswith("_Mara_")) {
+  } else if (Name.starts_with("_Mara_")) {
     OutArch = TargetArch::ARM64;
     rest = Name.drop_front(6);
   } else {
@@ -152,7 +153,7 @@ static std::string yamlValue(StringRef line) {
   if (colon == StringRef::npos) return "";
   StringRef val = line.substr(colon + 1).trim();
   // Enlève les guillemets
-  if (val.startswith("\"") && val.endswith("\""))
+  if (val.starts_with("\"") && val.ends_with("\""))
     val = val.slice(1, val.size() - 1);
   return val.str();
 }
@@ -184,30 +185,30 @@ std::vector<ABIEntry> ABIChecker::loadManifest(StringRef ManifestPath) {
 
   for (StringRef rawLine : lines) {
     StringRef line = rawLine.trim();
-    if (line.empty() || line.startswith("#")) continue;
+    if (line.empty() || line.starts_with("#")) continue;
 
-    if (line.startswith("arch:")) {
+    if (line.starts_with("arch:")) {
       fileArch = parseArch(yamlValue(line));
       continue;
     }
-    if (line.startswith("entries:")) {
+    if (line.starts_with("entries:")) {
       inEntries = true;
       continue;
     }
     if (!inEntries) continue;
 
-    if (line.startswith("- symbol:")) {
+    if (line.starts_with("- symbol:")) {
       if (building && !current.Symbol.empty())
         entries.push_back(current);
       current = ABIEntry{};
       current.Arch = fileArch;
       current.Symbol = yamlValue(line);
       building = true;
-    } else if (line.startswith("module:") && building) {
+    } else if (line.starts_with("module:") && building) {
       current.Module = yamlValue(line);
-    } else if (line.startswith("signature:") && building) {
+    } else if (line.starts_with("signature:") && building) {
       current.Signature = yamlValue(line);
-    } else if (line.startswith("public:") && building) {
+    } else if (line.starts_with("public:") && building) {
       current.IsPublic = yamlBool(line);
     }
   }

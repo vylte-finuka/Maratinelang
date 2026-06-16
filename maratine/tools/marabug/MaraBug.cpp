@@ -33,6 +33,7 @@
 
 #include "MaraBugSession.h"
 #include "llvm/Support/CommandLine.h"
+#include "llvm/Support/Format.h"
 #include "llvm/Support/InitLLVM.h"
 #include "llvm/Support/WithColor.h"
 #include "llvm/Support/raw_ostream.h"
@@ -292,8 +293,11 @@ static int repl(DebugSession &Session) {
 
 int main(int argc, char **argv) {
   InitLLVM X(argc, argv);
+  cl::SetVersionPrinter([](raw_ostream &OS) {
+    OS << "marabug v0.1 Naverta build 26160621 beta\n";
+  });
   cl::ParseCommandLineOptions(argc, argv,
-    "MaraBug — Mara/Maratine Debugger (MABI 1.0.1)\n");
+    "marabug - MaraBug Mara/Maratine Debugger (MABI 1.0.1)\n");
 
   raw_ostream &OS = outs();
   printBanner(OS);

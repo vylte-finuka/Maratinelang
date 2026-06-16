@@ -5,7 +5,7 @@ set(MARAI_SOURCES
   MaraiInstall.cpp
 )
 
-add_llvm_tool(marai ${MARAI_SOURCES})
+add_executable(marai ${MARAI_SOURCES})
 
 target_include_directories(marai PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 

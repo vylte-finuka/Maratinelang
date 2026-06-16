@@ -1,9 +1,17 @@
 # ninja log v7
-7	6479	8033224230166610	CMakeFiles/maratine_compiler.dir/lib/MaratineLexer.cpp.obj	d8a41c1012dd0c4d
-133	8071	8033224231557927	CMakeFiles/maratine_compiler.dir/lib/MaratineOVC.cpp.obj	610851aa409885a0
-23	11827	8033224230431211	CMakeFiles/maratine_compiler.dir/lib/MaratineParser.cpp.obj	86d13761c8b04691
-162	14192	8033224231906525	CMakeFiles/maratine-cc.dir/tools/maratine-cc.cpp.obj	3bc8b2dfad97872b
-90	20374	8033224231062374	CMakeFiles/maratine_compiler.dir/lib/MaratineCodeGen.cpp.obj	bfc004d807478da
-22	3829	8033286028488471	CMakeFiles/maratine_compiler.dir/lib/MaratineSema.cpp.obj	d54d431848644fa5
-3830	4346	8033286066564021	maratine_compiler.lib	85bec0359392650f
-4346	5812	8033286071735064	maratine-cc.exe	ecf55e7763c0981b
+11	3560	8033293157423123	CMakeFiles/maratine_compiler.dir/lib/MaratineLexer.cpp.obj	d8a41c1012dd0c4d
+57	4888	8033293157881926	CMakeFiles/maratine_compiler.dir/lib/MaratineSema.cpp.obj	d54d431848644fa5
+35	7445	8033293157671927	CMakeFiles/maratine_compiler.dir/lib/MaratineParser.cpp.obj	86d13761c8b04691
+3571	9829	8033293193011679	CMakeFiles/maratine_compiler.dir/lib/MaratineOVC.cpp.obj	610851aa409885a0
+54	5567	8033327364477434	tools/marai/CMakeFiles/marai.dir/Marai.cpp.obj	e3e7d795a7fb30b3
+30	9803	8033327364238121	CMakeFiles/maratine-cc.dir/tools/maratine-cc.cpp.obj	3bc8b2dfad97872b
+86	14815	8033293158174369	CMakeFiles/maratine_compiler.dir/lib/MaratineCodeGen.cpp.obj	bfc004d807478da
+40	5114	8033318894433156	tools/marai/CMakeFiles/marai.dir/MaraiAudit.cpp.obj	849f7cfb3c0e385d
+43	306	8033293741152355	maratine_compiler.lib	85bec0359392650f
+78	3830	8033293741510686	tools/marai/CMakeFiles/marai.dir/MaraiInstall.cpp.obj	33588eb292f8087
+77	10218	8033308960642965	tools/marai/CMakeFiles/marai.dir/MaraiABI.cpp.obj	35185654d787e1b1
+307	5832	8033293743794897	tools/marabug/CMakeFiles/marabug.dir/MaraBugSession.cpp.obj	4ab46ec926a6a96f
+9804	10757	8033327461969479	maratine-cc.exe	ecf55e7763c0981b
+80	6102	8033327364738410	tools/marabug/CMakeFiles/marabug.dir/MaraBug.cpp.obj	390c85c73c273371
+6103	6537	8033327424957565	tools/marabug/marabug.exe	60ee273165c4a581
+5568	6318	8033327419607212	tools/marai/marai.exe	ef98da79e11480c1

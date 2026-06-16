@@ -3,7 +3,7 @@ set(MARABUG_SOURCES
   MaraBugSession.cpp
 )
 
-add_llvm_tool(marabug ${MARABUG_SOURCES})
+add_executable(marabug ${MARABUG_SOURCES})
 
 target_include_directories(marabug PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 

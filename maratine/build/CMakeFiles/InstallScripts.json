@@ -2,6 +2,8 @@
 	"InstallScripts" : 
 	[
 		"D:/Downloads/Vyft_product/Maratinelang/maratinec/maratine/build/cmake_install.cmake",
+		"D:/Downloads/Vyft_product/Maratinelang/maratinec/maratine/build/tools/marai/cmake_install.cmake",
+		"D:/Downloads/Vyft_product/Maratinelang/maratinec/maratine/build/tools/marabug/cmake_install.cmake",
 		"D:/Downloads/Vyft_product/Maratinelang/maratinec/maratine/build/test/cmake_install.cmake"
 	],
 	"Parallel" : false

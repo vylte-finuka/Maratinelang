@@ -49,8 +49,11 @@ static cl::opt<bool> Optimize(
     cl::desc("Enable O2 optimizations"));
 
 int main(int argc, char **argv) {
+  cl::SetVersionPrinter([](raw_ostream &OS) {
+    OS << "maratine-cc v0.1 Naverta build 26160621 beta\n";
+  });
   cl::ParseCommandLineOptions(argc, argv,
-      "Maratine Compiler — Slura OS / ARM64 target\n");
+      "maratine-cc - Maratine Compiler (Slura OS / ARM64 + X64)\n");
 
   auto BufferOrErr = MemoryBuffer::getFile(InputFile);
   if (!BufferOrErr) {

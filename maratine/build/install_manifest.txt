@@ -1,4 +1,6 @@
 D:/maratine-install/bin/maratine-cc.exe
+D:/maratine-install/bin/marai.exe
+D:/maratine-install/bin/marabug.exe
 D:/maratine-install/include/maratine/MaratineAST.h
 D:/maratine-install/include/maratine/MaratineCodeGen.h
 D:/maratine-install/include/maratine/MaratineLexer.h

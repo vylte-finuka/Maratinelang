@@ -141,12 +141,18 @@ if(WIN32)
 endif()
 
 # ---------------------------------------------------------------
-# 6. Tests & install
+# 6. Outils
+# ---------------------------------------------------------------
+add_subdirectory(tools/marai)
+add_subdirectory(tools/marabug)
+
+# ---------------------------------------------------------------
+# 7. Tests & install
 # ---------------------------------------------------------------
 enable_testing()
 add_subdirectory(test)
 
-install(TARGETS maratine-cc DESTINATION bin)
+install(TARGETS maratine-cc marai marabug DESTINATION bin)
 install(FILES include/MaratineAST.h include/MaratineCodeGen.h
               include/MaratineLexer.h include/MaratineParser.h
         DESTINATION include/maratine)

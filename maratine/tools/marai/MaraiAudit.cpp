@@ -9,10 +9,12 @@
 #include "MaraiAudit.h"
 #include "MaraiABI.h"
 #include "llvm/Support/FileSystem.h"
+#include "llvm/Support/Format.h"
 #include "llvm/Support/Path.h"
 #include "llvm/Support/raw_ostream.h"
 #include "llvm/ADT/StringRef.h"
 #include <algorithm>
+#include <string>
 
 using namespace llvm;
 using namespace marai;
@@ -303,4 +305,37 @@ void AuditEngine::auditPermissions(StringRef PackagePath, AudeReport &R) {
 
 void AuditEngine::auditNetwork(StringRef PackagePath, AudeReport &R) {
   // TODO: détecter les endpoints HTTP non chiffrés dans MaraNet calls
+}
+
+//----------------------------------------------------------------------
+// AudeReport::printAudeSBOM — Software Bill of Materials
+//----------------------------------------------------------------------
+
+void AudeReport::printAudeSBOM(raw_ostream &OS) const {
+  OS << "\n§ SBOM — Software Bill of Materials\n";
+  OS << "────────────────────────────────────────────────────────\n";
+
+  if (SBOM.empty()) {
+    OS << "  (aucun package enregistré dans Maralock.yaml)\n";
+    return;
+  }
+
+  OS << llvm::format("  %-30s %-12s %-20s %s\n",
+                     "Package", "Version", "Licence", "SHA-256");
+  OS << "  " << std::string(80, '-') << "\n";
+
+  for (const auto &E : SBOM) {
+    std::string sha = E.SHA256.size() > 16
+                      ? E.SHA256.substr(0, 16) + "…"
+                      : E.SHA256;
+    OS << llvm::format("  %-30s %-12s %-20s %s\n",
+                       E.Name.c_str(), E.Version.c_str(),
+                       E.License.c_str(), sha.c_str());
+  }
+
+  OS << "\n  Total : " << SBOM.size() << " composant(s)\n";
+
+  for (const auto &C : ChainIssues) {
+    OS << "  ⚠ [" << C.Package << "] " << C.Issue << "\n";
+  }
 }
