@@ -1,6 +1,7 @@
 // Vyft Ltd — Mara/Maratine Semantic Analysis — Proprietary — 2026
 
 #include "MaratineSema.h"
+#include "llvm/Support/Casting.h"
 #include "llvm/Support/raw_ostream.h"
 
 using namespace llvm;

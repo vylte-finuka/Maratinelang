@@ -1,5 +1,9 @@
 # ninja log v7
-8	7044	8033190654806118	CMakeFiles/maratine_compiler.dir/lib/MaratineLexer.cpp.obj	d8a41c1012dd0c4d
-26	12059	8033190655048336	CMakeFiles/maratine_compiler.dir/lib/MaratineParser.cpp.obj	86d13761c8b04691
-117	13698	8033190656011724	CMakeFiles/maratine_compiler.dir/lib/MaratineOVC.cpp.obj	610851aa409885a0
-146	17651	8033190656354914	CMakeFiles/maratine-cc.dir/tools/maratine-cc.cpp.obj	3bc8b2dfad97872b
+7	6479	8033224230166610	CMakeFiles/maratine_compiler.dir/lib/MaratineLexer.cpp.obj	d8a41c1012dd0c4d
+133	8071	8033224231557927	CMakeFiles/maratine_compiler.dir/lib/MaratineOVC.cpp.obj	610851aa409885a0
+23	11827	8033224230431211	CMakeFiles/maratine_compiler.dir/lib/MaratineParser.cpp.obj	86d13761c8b04691
+162	14192	8033224231906525	CMakeFiles/maratine-cc.dir/tools/maratine-cc.cpp.obj	3bc8b2dfad97872b
+90	20374	8033224231062374	CMakeFiles/maratine_compiler.dir/lib/MaratineCodeGen.cpp.obj	bfc004d807478da
+22	3829	8033286028488471	CMakeFiles/maratine_compiler.dir/lib/MaratineSema.cpp.obj	d54d431848644fa5
+3830	4346	8033286066564021	maratine_compiler.lib	85bec0359392650f
+4346	5812	8033286071735064	maratine-cc.exe	ecf55e7763c0981b

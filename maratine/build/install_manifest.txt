@@ -1,0 +1,5 @@
+D:/maratine-install/bin/maratine-cc.exe
+D:/maratine-install/include/maratine/MaratineAST.h
+D:/maratine-install/include/maratine/MaratineCodeGen.h
+D:/maratine-install/include/maratine/MaratineLexer.h
+D:/maratine-install/include/maratine/MaratineParser.h

@@ -106,7 +106,7 @@ CMAKE_EXPORT_COMPILE_COMMANDS:BOOL=
 CMAKE_FIND_PACKAGE_REDIRECTS_DIR:STATIC=D:/Downloads/Vyft_product/Maratinelang/maratinec/maratine/build/CMakeFiles/pkgRedirects
 
 //Install path prefix, prepended onto install directories.
-CMAKE_INSTALL_PREFIX:PATH=C:/Program Files (x86)/Maratine
+CMAKE_INSTALL_PREFIX:PATH=D:/maratine-install
 
 //Linker
 CMAKE_LINKER:FILEPATH=D:/VisualS/VC/Tools/Llvm/x64/bin/lld-link.exe
@@ -234,8 +234,8 @@ CMAKE_STATIC_LINKER_FLAGS_RELEASE:STRING=
 // during RELWITHDEBINFO builds.
 CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 
-//The CMake toolchain file
-CMAKE_TOOLCHAIN_FILE:FILEPATH=D:/Downloads/Vyft_product/Maratinelang/maratinec/maratine/windows-clang-cl.cmake
+//No help, variable specified on the command line.
+CMAKE_TOOLCHAIN_FILE:UNINITIALIZED=D:\Downloads\Vyft_product\Maratinelang\maratinec\maratine\windows-clang-cl.cmake
 
 //If this value is on, makefiles will be generated without the
 // .SILENT directive, and all commands will be echoed to the console
